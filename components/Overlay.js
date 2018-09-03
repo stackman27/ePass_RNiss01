@@ -114,7 +114,7 @@ _OnPassPressed(){
 const styles = StyleSheet.create({
  
   myPasses: {
-    padding: 30, 
+    padding: 20, 
     borderBottomColor: '#D9D9DA',
     borderBottomWidth: 1, 
   },
