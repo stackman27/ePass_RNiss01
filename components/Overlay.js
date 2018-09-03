@@ -114,13 +114,13 @@ _OnPassPressed(){
 const styles = StyleSheet.create({
  
   myPasses: {
-    padding: 20, 
+    padding: 30, 
     borderBottomColor: '#D9D9DA',
     borderBottomWidth: 1, 
   },
 
   mypassTxt: {
-    fontSize: 18,
+    fontSize: 21,
     fontWeight: 'bold',
   },
 
