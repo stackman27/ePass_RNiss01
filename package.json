@@ -22,8 +22,9 @@
     "expo": "^27.0.1",
     "prop-types": "^15.6.2",
     "react": "16.3.1",
-    "react-native": "~0.55.2", 
-    "react-native-dialog": "^5.1.0",   
-    "react-native-shadow": "^1.2.2"
+    "react-native": "~0.55.2",
+    "react-native-dialog": "^5.1.0",
+    "react-native-shadow": "^1.2.2",
+    "react-navigation": "^2.12.1"
   }
 }

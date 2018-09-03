@@ -38,7 +38,8 @@ export  class ShowPass extends React.Component {
 
   render(){
     return (
-      <View style = {styles.contWrap}>    
+      <View style = {styles.contWrap}>   
+       
         
         <ConfirmoutPopup visibility = {this.state.dialogConfirmOutVisible} confirmCancel = {this._showConfirmOutDialogCancel} confirmCheckout = {this._showConfirmOutDialogCheckout}/>
 
@@ -49,8 +50,7 @@ export  class ShowPass extends React.Component {
             </TouchableOpacity>
         </View>
  
-        <View style = {styles.wrapiss02}>
-            <Text>Hello 2</Text> 
+        <View style = {styles.wrapiss02}> 
         </View>
 
  

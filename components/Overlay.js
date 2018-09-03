@@ -43,8 +43,8 @@ _OnPassPressed(){
  render = () =>{
 
   const shadowOpt = {
-    width:50,
-    height:50,
+    width:65,
+    height:65,
     color:"#000",
 
     border:50,
@@ -85,12 +85,13 @@ _OnPassPressed(){
                   {
                     key: 'Bathroom P6',
                   },
+  
 
                 ]} 
 
                 renderItem = {({item}) => 
                 
-                <TouchableOpacity onPress={this._OnPassPressed}> 
+                <TouchableOpacity  onPress = {() => this.props.navigation.navigate('ShowPassScreen')}> 
                     <View style = {styles.myPasses}> 
                         <Text style = {styles.mypassTxt}> {item.key} </Text>
                     </View>
@@ -114,7 +115,7 @@ _OnPassPressed(){
 const styles = StyleSheet.create({
  
   myPasses: {
-    padding: 20, 
+    padding: 30, 
     borderBottomColor: '#D9D9DA',
     borderBottomWidth: 1, 
   },
@@ -125,10 +126,10 @@ const styles = StyleSheet.create({
   },
 
   positionInBottom: {    
-    width: 50,
-    height: 50,
+    width: 65,
+    height: 65,
     bottom: 15,
-    left: Dimensions.get('window').width - 70,
+    left: Dimensions.get('window').width - 80,
     backgroundColor: '#4A8AF4',
     zIndex: 100,
     borderRadius: 100,  
@@ -150,7 +151,7 @@ const styles = StyleSheet.create({
 },
 
 addPasstxt: {
-  fontSize: 32,
+  fontSize: 38,
   color: 'white',  
 }
  
