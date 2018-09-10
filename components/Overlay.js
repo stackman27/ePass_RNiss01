@@ -25,8 +25,8 @@ export default class Overlay extends React.Component {
 
   componentDidMount(){
 
-    let apiAllPasses = 'http://10.0.2.2:8000/api/allpasses';
-    let apiMyRegPasses = 'http://10.0.2.2:8000/api/getregisterstudent';
+    let apiAllPasses = 'https://mysterious-wildwood-71460.herokuapp.com/api/allpasses';
+    let apiMyRegPasses = 'https://mysterious-wildwood-71460.herokuapp.com/api/getregisterstudent';
 
   return fetch(apiAllPasses)
     .then((response) => response.json())
@@ -74,7 +74,7 @@ export default class Overlay extends React.Component {
   }
 
   createstdPass(uId, passCode) {
-    fetch('http://10.0.2.2:8000/api/postregisterstudent', {
+    fetch('https://mysterious-wildwood-71460.herokuapp.com/api/postregisterstudent', {
       method: 'POST',
       headers: {
           Accept: 'application/json',
@@ -147,7 +147,7 @@ txtValChange(value){
                               renderItem = {({item}) => 
                 
                               <TouchableOpacity onPress = {() => this.props.navigation.navigate('ShowPassScreen', {pass_code: item.pass_code, pass_id: item.pass_id})}> 
-                                  <View style = {{padding: 30, elevation: 10}}> 
+                                  <View style = {styles.myPasses}> 
                                       <Text style = {styles.mypassTxt}> {item.pass_code} || pass_id: {item.pass_id} </Text>
                                   </View>
                               </TouchableOpacity>
