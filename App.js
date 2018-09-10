@@ -9,12 +9,12 @@ import { Login } from './components/Login';
 
  
 const AppNavigator = StackNavigator({
- /*      LoginScreen: {
-        screen: Login,
+/*     LoginScreen: {
+        screen: Login,    
         navigationOptions: {
           header: null,
         }
-      },  */
+      },  */ 
 
       OverlayScreen: { 
              screen: Overlay,  

@@ -4,10 +4,11 @@ import {
   Text,
   View,
   TextInput,
-  TouchableOpacity 
+  TouchableOpacity,
+  Dimensions
 } from 'react-native';
  
-
+ 
 export default class Form extends Component {
 
 	render(){
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
   },
 
   inputBox: {
-    width:300,
+    width: 300,
     backgroundColor:'rgba(255, 255,255,0.2)',
     borderRadius: 25,
     padding:10,

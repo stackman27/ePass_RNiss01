@@ -25,8 +25,8 @@ export default class Overlay extends React.Component {
 
   componentDidMount(){
 
-    let apiAllPasses = 'https://mysterious-wildwood-71460.herokuapp.com/api/allpasses';
-    let apiMyRegPasses = 'https://mysterious-wildwood-71460.herokuapp.com/api/getregisterstudent';
+    let apiAllPasses = 'http://10.0.2.2:8000/api/allpasses';
+    let apiMyRegPasses = 'http://10.0.2.2:8000/api/getregisterstudent';
 
   return fetch(apiAllPasses)
     .then((response) => response.json())
@@ -74,7 +74,7 @@ export default class Overlay extends React.Component {
   }
 
   createstdPass(uId, passCode) {
-    fetch('https://mysterious-wildwood-71460.herokuapp.com/api/postregisterstudent', {
+    fetch('http://10.0.2.2:8000/api/postregisterstudent', {
       method: 'POST',
       headers: {
           Accept: 'application/json',
