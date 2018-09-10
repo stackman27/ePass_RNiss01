@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity 
 } from 'react-native';
+ 
 
 export default class Form extends Component {
 
@@ -27,7 +28,7 @@ export default class Form extends Component {
               placeholderTextColor = "#ffffff"
               ref={(input) => this.password = input}
               />  
-           <TouchableOpacity style={styles.button}>
+           <TouchableOpacity style={styles.button} onPress = {this.props.pressProp}>
              <Text style={styles.buttonText}>{this.props.type}</Text>
            </TouchableOpacity>     
   		</View>
@@ -46,7 +47,8 @@ const styles = StyleSheet.create({
     width:300,
     backgroundColor:'rgba(255, 255,255,0.2)',
     borderRadius: 25,
-    paddingHorizontal:16,
+    padding:10,
+    paddingLeft: 20, 
     fontSize:16,
     color:'#ffffff',
     marginVertical: 10

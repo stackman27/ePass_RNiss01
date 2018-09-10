@@ -11,16 +11,20 @@ export class Login extends React.Component {
         alert('Signup');
     }
 
+    pressHandle = () => {
+        this.props.navigation.navigate('OverlayScreen')
+    }
+
   render(){
     return (
       <View style = {styles.container}>
             <Logo />
             
-             <Form type="Login"/>
+             <Form type="Login" pressProp = {this.pressHandle}/>
 
              <View style = {styles.signupTextCont}> 
                   <Text style = {styles.signupText}> Don't have an account yet? </Text>
-                    <TouchableOpacity onPress = {this._gotoSignup}> 
+                    <TouchableOpacity onPress = {this.pressHandle}> 
                         <Text style = {styles.signupButton}> SignUp </Text>
                     </TouchableOpacity> 
              </View>     

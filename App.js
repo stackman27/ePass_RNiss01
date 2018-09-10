@@ -9,12 +9,12 @@ import { Login } from './components/Login';
 
  
 const AppNavigator = StackNavigator({
-      LoginScreen: {
+ /*      LoginScreen: {
         screen: Login,
         navigationOptions: {
           header: null,
         }
-      },
+      },  */
 
       OverlayScreen: { 
              screen: Overlay,  
@@ -29,8 +29,11 @@ const AppNavigator = StackNavigator({
                     ,
 
                headerTintColor: '#ffffff',
+               headerLeft: null,
+               headerRight: null,
                 headerStyle: {
-                  backgroundColor: '#8E3A9D',  
+                 backgroundColor: '#8E3A9D',  
+                 
                 }, 
              }
           }, 
@@ -63,6 +66,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1, 
     marginTop: 22, 
+    backgroundColor: 'transparent'
   }, 
 
   headerStyle: {

@@ -17,9 +17,13 @@ export  class PopupAddPass extends React.Component {
                         padding: 20, 
                         fontSize: 24
                     }}
+
+                    value = {this.props.setVal}
+                    onChangeText = {this.props.setChangeText}  
+
                 />
             <Dialog.Button label = "Cancel" onPress = {this.props.onCancelClick} />
-            <Dialog.Button label = "Submit" onPress = {this.props.onSubmitClick} />
+            <Dialog.Button label = "Submit" onPress = {this.props.setSubmitPass} />
         </Dialog.Container>
       </View>
     );

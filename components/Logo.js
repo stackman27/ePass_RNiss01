@@ -24,7 +24,8 @@ const styles = StyleSheet.create({
   },
   logoText : {
   	marginVertical: 15,
-  	fontSize:18,
+    fontSize:48,
+    fontWeight: 'bold',
   	color:'rgba(255, 255, 255, 0.7)'
   }
 });
