@@ -27,7 +27,7 @@ export  class ConfirmoutPopup extends React.Component {
  }
 
   checkoutUser(){
-    fetch('https://mysterious-wildwood-71460.herokuapp.comapi/outsideuser', {
+    fetch('https://mysterious-wildwood-71460.herokuapp.com/api/outsideuser', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
