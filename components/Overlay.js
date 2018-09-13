@@ -63,8 +63,8 @@ export default class Overlay extends React.Component {
 
           if(subTxtCode == arrPasses[index]) {
             console.log("TRUE", subTxtCode);
-            this.createstdPass(2, subTxtCode);
-
+            this.createstdPass(3, subTxtCode);
+            alert('Success'); 
             break;
           } else {
             console.log('FALSE', subTxtCode);
@@ -147,9 +147,16 @@ txtValChange(value){
                               renderItem = {({item}) => 
                 
                               <TouchableOpacity onPress = {() => this.props.navigation.navigate('ShowPassScreen', {pass_code: item.pass_code, pass_id: item.pass_id})}> 
-                                  <View style = {styles.myPasses}> 
-                                      <Text style = {styles.mypassTxt}> {item.pass_code} || pass_id: {item.pass_id} </Text>
-                                  </View>
+                                  
+                                  {this.state.dataPasses.map((pCode, i) => (
+                                      (pCode.code === item.pass_code) ?
+                                        <View style = {styles.myPasses} key = {i}> 
+                                            <Text style = {styles.mypassTxt}>  {pCode.name} </Text>
+                                        </View>
+                                        :
+                                        null  
+                                    ))}
+
                               </TouchableOpacity>
                                 
                               }
