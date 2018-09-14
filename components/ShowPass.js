@@ -8,8 +8,7 @@ export  class ShowPass extends React.Component {
         super(props);
 
         this.state = {
-            dialogConfirmOutVisible: false,
-            dataUsers: {}, 
+            dialogConfirmOutVisible: false, 
         };
 
         this._showConfirmOutDialog = this._showConfirmOutDialog.bind(this);
