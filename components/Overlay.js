@@ -12,7 +12,7 @@ export default class Overlay extends React.Component {
       this.state = {
         dialogVisible: false,
         dataPasses: null,
-        myRegPasses: null, 
+        myRegPasses: null,  
         txtVal: '',
     }; 
 
@@ -27,7 +27,7 @@ export default class Overlay extends React.Component {
 
     let apiAllPasses = 'http://10.0.2.2:8000/api/allpasses';
     let apiMyRegPasses = 'http://10.0.2.2:8000/api/getregisterstudent';
-
+ 
   return fetch(apiAllPasses)
     .then((response) => response.json())
     .then((responseJson) => {
@@ -43,7 +43,7 @@ export default class Overlay extends React.Component {
               this.setState({
                   myRegPasses: responseJson,
               });
-              console.log("MYREGPASSES: ", this.state.myRegPasses);
+              console.log("MYREGPASSES: ", this.state.myRegPasses); 
           }).done();
       }).done();
 
@@ -145,20 +145,20 @@ txtValChange(value){
                             <FlatList 
                               data= {this.state.myRegPasses}
                               renderItem = {({item}) => 
-                
-                              <TouchableOpacity onPress = {() => this.props.navigation.navigate('ShowPassScreen', {pass_code: item.pass_code, pass_id: item.pass_id})}> 
-                                  
-                                  {this.state.dataPasses.map((pCode, i) => (
-                                      (pCode.code === item.pass_code) ?
-                                        <View style = {styles.myPasses} key = {i}> 
-                                            <Text style = {styles.mypassTxt}>  {pCode.name} </Text>
-                                        </View>
-                                        :
-                                        null  
-                                    ))}
 
-                              </TouchableOpacity>
-                                
+                               this.state.dataPasses.map((pCode, i) => (
+                                (pCode.code === item.pass_code) ? 
+                                  <TouchableOpacity key = {i} onPress = {() => this.props.navigation.navigate('ShowPassScreen', {pass_code: item.pass_code, pass_name: pCode.name, pass_id: item.pass_id, teacId: item.teacher_id})}>  
+                                            <View style = {styles.myPasses}  > 
+                                                <Text style = {styles.mypassTxt}>  {pCode.name} </Text>  
+                                        
+                                          <Text style = {styles.minOut}>9 m</Text>
+                                                 
+                                            </View>
+                                  </TouchableOpacity>
+                                    :
+                                    null  
+                                   )) 
                               }
                         
                             />
@@ -179,15 +179,28 @@ txtValChange(value){
 const styles = StyleSheet.create({
  
   myPasses: {
-    padding: 30, 
+    padding: 20, 
     borderBottomColor: '#D9D9DA',
     borderBottomWidth: 1,  
+    flexDirection: 'row',
+    flex: 1, 
+    justifyContent: 'flex-end',
   },
 
   mypassTxt: {
-    fontSize: 21,
+    fontSize: 20,
     fontWeight: 'bold',
-    color: 'black'
+    color: 'black',
+    flex: 3, 
+ 
+  },
+
+  minOut: {
+    flex: 1,
+    padding: 0, 
+    fontSize: 18,
+    textAlign: 'right',
+    marginRight: 10, 
   },
 
   positionInBottom: {  

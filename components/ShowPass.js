@@ -8,14 +8,16 @@ export  class ShowPass extends React.Component {
         super(props);
 
         this.state = {
-            dialogConfirmOutVisible: false
+            dialogConfirmOutVisible: false,
+            dataUsers: {}, 
         };
 
         this._showConfirmOutDialog = this._showConfirmOutDialog.bind(this);
         this._showConfirmOutDialogCancel = this._showConfirmOutDialogCancel.bind(this);
         this._showConfirmOutDialogCheckout = this._showConfirmOutDialogCheckout.bind(this);
-    }
 
+    }
+  
     _showConfirmOutDialog(){
         this.setState({
             dialogConfirmOutVisible: true
@@ -34,18 +36,18 @@ export  class ShowPass extends React.Component {
         })
     }
 
- 
-
+      
   render(){
+    
     return (
       <View style = {styles.contWrap}>   
-        
+
         <ConfirmoutPopup confirmOutPassId = {this.props.navigation.state.params.pass_id} confirmOutPassCode = {this.props.navigation.state.params.pass_code} visibility = {this.state.dialogConfirmOutVisible} confirmCancel = {this._showConfirmOutDialogCancel} confirmCheckout = {this._showConfirmOutDialogCheckout}/>
 
         <View style = {styles.wrapiss01}> 
-            <TouchableOpacity onPress = {this._showConfirmOutDialog} > 
-                <Text style = {styles.wrapiss01TTitle}> {this.props.navigation.state.params.pass_code} </Text> 
-                <Text style = {styles.wrapiss01TTitle1}> {this.props.navigation.state.params.pass_id} </Text>  
+        <TouchableOpacity onPress = {this._showConfirmOutDialog}> 
+                <Text style = {styles.wrapiss01TTitle}> {this.props.navigation.state.params.pass_name} </Text> 
+                <Text style = {styles.wrapiss01TTitle1}> Sishir Giri </Text>  
             </TouchableOpacity>
         </View>
  
@@ -82,7 +84,6 @@ const styles = StyleSheet.create({
       },
       android: {
           elevation: 2
-  
       },
       })
 
