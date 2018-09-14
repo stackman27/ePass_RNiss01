@@ -43,12 +43,12 @@ export  class ShowPass extends React.Component {
         <ConfirmoutPopup confirmOutPassId = {this.props.navigation.state.params.pass_id} confirmOutPassCode = {this.props.navigation.state.params.pass_code} visibility = {this.state.dialogConfirmOutVisible} confirmCancel = {this._showConfirmOutDialogCancel} confirmCheckout = {this._showConfirmOutDialogCheckout}/>
 
         <View style = {styles.wrapiss01}> 
-            <TouchableOpacity onPress = {this._showConfirmOutDialog} > 
-                <Text style = {styles.wrapiss01TTitle}> {this.props.navigation.state.params.pass_code} </Text> 
-                <Text style = {styles.wrapiss01TTitle1}> {this.props.navigation.state.params.pass_id} </Text>  
+        <TouchableOpacity onPress = {this._showConfirmOutDialog}> 
+                <Text style = {styles.wrapiss01TTitle}> {this.props.navigation.state.params.pass_name} </Text> 
+                <Text style = {styles.wrapiss01TTitle1}> Sishir Giri </Text>  
             </TouchableOpacity>
         </View>
- 
+
         <View style = {styles.wrapiss02}> 
         </View>
 

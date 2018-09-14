@@ -146,11 +146,19 @@ txtValChange(value){
                               data= {this.state.myRegPasses}
                               renderItem = {({item}) => 
                 
-                              <TouchableOpacity onPress = {() => this.props.navigation.navigate('ShowPassScreen', {pass_code: item.pass_code, pass_id: item.pass_id})}> 
-                                  <View style = {styles.myPasses}> 
-                                      <Text style = {styles.mypassTxt}> {item.pass_code} || pass_id: {item.pass_id} </Text>
-                                  </View>
-                              </TouchableOpacity>
+                              this.state.dataPasses.map((pCode, i) => (
+                                (pCode.code === item.pass_code) ? 
+                                  <TouchableOpacity key = {i} onPress = {() => this.props.navigation.navigate('ShowPassScreen', {pass_code: item.pass_code, pass_name: pCode.name, pass_id: item.pass_id, teacId: item.teacher_id})}>  
+                                            <View style = {styles.myPasses}  > 
+                                                <Text style = {styles.mypassTxt}>  {pCode.name} </Text>  
+                                        
+                                          <Text style = {styles.minOut}>9 m</Text>
+                                                 
+                                            </View>
+                                  </TouchableOpacity>
+                                    :
+                                    null  
+                                   )) 
                                 
                               }
                         
