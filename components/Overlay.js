@@ -84,6 +84,8 @@ export default class Overlay extends React.Component {
           user_id: uId,
           pass_code: passCode
       }),
+  }).then((response) => {
+    alert('Success');
   });
   }
   
@@ -183,12 +185,25 @@ const styles = StyleSheet.create({
     padding: 30, 
     borderBottomColor: '#D9D9DA',
     borderBottomWidth: 1,  
+    flexDirection: 'row',
+    flex: 1, 
+    justifyContent: 'flex-end',
   },
 
   mypassTxt: {
-    fontSize: 21,
+    fontSize: 20,
     fontWeight: 'bold',
-    color: 'black'
+    color: 'black',
+    flex: 3, 
+ 
+  },
+
+  minOut: {
+    flex: 1,
+    padding: 0, 
+    fontSize: 18,
+    textAlign: 'right',
+    marginRight: 10, 
   },
 
   positionInBottom: {  
