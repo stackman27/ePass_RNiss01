@@ -14,6 +14,10 @@ export default class Overlay extends React.Component {
         dataPasses: null,
         myRegPasses: null,  
         txtVal: '',
+        u_apiToken: '',
+        u_id: '',
+        u_name: '',
+        u_email: '',
     }; 
 
     this.showDialog = this.showDialog.bind(this);
@@ -21,9 +25,17 @@ export default class Overlay extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.submitCodeHandle = this.submitCodeHandle.bind(this);
     this.txtValChange = this.txtValChange.bind(this);
+   // this.logOutUser = this.logOutUser.bind(this);
+   this._apigetUserInfo = this._apigetUserInfo.bind(this);
   }
 
   componentDidMount(){
+    
+    this.setState({
+      u_apiToken: this.props.navigation.state.params.u_apiToken
+    });
+
+    this._apigetUserInfo();
 
     let apiAllPasses = 'http://10.0.2.2:8000/api/allpasses';
     let apiMyRegPasses = 'http://10.0.2.2:8000/api/getregisterstudent';
@@ -46,6 +58,24 @@ export default class Overlay extends React.Component {
               console.log("MYREGPASSES: ", this.state.myRegPasses); 
           }).done();
       }).done();
+
+  }
+
+  _apigetUserInfo(){
+
+    fetch('http://10.0.2.2:8000/api/details', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${this.state.u_apiToken}` 
+      }
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson);
+      }).catch((error) => {
+        console.log(error);
+      });
 
   }
 
@@ -72,6 +102,25 @@ export default class Overlay extends React.Component {
 
     }
   }
+
+/*   logOutUser(e){
+    e.preventDefault();
+ 
+    fetch('http://10.0.2.2:8000/api/logout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${this.state.u_apiToken}` 
+        }
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson);
+      }).catch((error) => {
+        console.log(error);
+      });
+
+  } */
 
   createstdPass(uId, passCode) {
     fetch('http://10.0.2.2:8000/api/postregisterstudent', {
@@ -137,12 +186,11 @@ txtValChange(value){
 
               <PopupAddPass setVal = {this.state.txtVal} setChangeText = {this.txtValChange} setSubmitPass = {this.submitCodeHandle} visibility = {this.state.dialogVisible} onCancelClick = {this.handleCancel} onSubmitClick = {this.handleSubmit}/>
             
-                    <View style = {styles.PassesContainer}> 
-
+                    <View style = {styles.PassesContainer}>  
                         <View style = {styles.admitClasses}> 
-                          
-
-                            <FlatList 
+               
+      
+                       {/*      <FlatList 
                               data= {this.state.myRegPasses}
                               renderItem = {({item}) => 
 
@@ -161,7 +209,9 @@ txtValChange(value){
                                    )) 
                               }
                         
-                            />
+                            /> */}
+
+                         
                         </View>
             </View>
 

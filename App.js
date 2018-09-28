@@ -1,20 +1,23 @@
 import React from 'react';
-import {StyleSheet, Text, View, StatusBar, FlatList, TouchableOpacity,   Button, Dimensions} from 'react-native';
+import {StyleSheet, TextInput,  Form, Text, View, StatusBar, FlatList, TouchableOpacity,   Button, Dimensions} from 'react-native';
 import { PopupAddPass } from './components/PopupAddPass'; 
 import {StackNavigator} from 'react-navigation';
+ 
 
 import Overlay from './components/Overlay';
 import { ShowPass } from './components/ShowPass';
 import { Login } from './components/Login';
+import RegisterUser from './components/ModelService/RegisterUser';
+import LoginUser from './components/ModelService/LoginUser';
 
  
 const AppNavigator = StackNavigator({
-/*     LoginScreen: {
+     LoginScreen: {
         screen: Login,    
         navigationOptions: {
           header: null,
         }
-      },  */ 
+      },  
 
       OverlayScreen: { 
              screen: Overlay,  
@@ -46,31 +49,22 @@ const AppNavigator = StackNavigator({
     }, {headerMode: 'screen'} );
 
 export default class App extends React.Component { 
-  
-  _onHandleLogout(){
-    alert('Log Out');
-  }
-
+   
   render(){
     return (
       <View style={styles.container}>   
-          <AppNavigator/>
+           <AppNavigator />
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-
-
   container: {
     flex: 1, 
     marginTop: 22, 
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent', 
   }, 
-
-  headerStyle: {
-
-  }
+ 
 
 });
