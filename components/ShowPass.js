@@ -41,19 +41,37 @@ export  class ShowPass extends React.Component {
     return (
       <View style = {styles.contWrap}>   
 
-        <ConfirmoutPopup confirmOutPassId = {this.props.navigation.state.params.pass_id} uOut_id = {this.props.navigation.state.params.uOut_id} confirmOutPassCode = {this.props.navigation.state.params.pass_code} visibility = {this.state.dialogConfirmOutVisible} confirmCancel = {this._showConfirmOutDialogCancel} confirmCheckout = {this._showConfirmOutDialogCheckout}/>
+       {/*  <ConfirmoutPopup confirmOutPassId = {this.props.navigation.state.params.pass_id} uOut_id = {this.props.navigation.state.params.uOut_id} confirmOutPassCode = {this.props.navigation.state.params.pass_code} visibility = {this.state.dialogConfirmOutVisible} confirmCancel = {this._showConfirmOutDialogCancel} confirmCheckout = {this._showConfirmOutDialogCheckout}/>
+ */}
+        <View style = {styles.wrapiss}> 
 
-        <View style = {styles.wrapiss01}> 
-        <TouchableOpacity onPress = {this._showConfirmOutDialog}> 
-                <Text style = {styles.wrapiss01TTitle}> {this.props.navigation.state.params.pass_name} </Text>  
-                <Text style = {styles.wrapiss01TTitle1}> {this.props.navigation.state.params.teacId} </Text>  
+            <View style = {styles.wrapTitles}> 
+                <Text style = {styles.wrapiss01TTitle}> Bathroom Pass 1</Text>
+                <Text style = {styles.wrapiss01TTitle1}> Sishir Giri </Text> 
+
+            </View>
+
+
+        <View style = {styles.selecbtns}>
+
+        <View style = {styles.selecbtnsCheckout}> 
+                <TouchableOpacity onPress = {this._showConfirmOutDialog}>   
+                    <Text> Check Out </Text> 
+            </TouchableOpacity>
+        </View> 
+
+           <View style = {styles.selecbtnsCheckout}> 
+                <TouchableOpacity onPress = {this._showConfirmOutDialog}>   
+                    <Text> Check Out </Text>
+                {/*  <Text style = {styles.wrapiss01TTitle}> {this.props.navigation.state.params.pass_name} </Text>  
+                    <Text style = {styles.wrapiss01TTitle1}> {this.props.navigation.state.params.teacId} </Text>   */}
             </TouchableOpacity>
         </View>
- 
-        <View style = {styles.wrapiss02}> 
-        </View>
 
- 
+        </View>
+        
+        </View>
+  
       </View>
     );
   }
@@ -66,42 +84,40 @@ const styles = StyleSheet.create({
         flexDirection: 'column', 
     },
 
-    wrapiss01: {
-      flex: 1,  
-      borderBottomColor: 'gray',
-      backgroundColor: '#DB4C40',
-      borderBottomWidth: 1,  
-      padding: 15,
-      justifyContent:'space-evenly',
+    wrapiss: {
+      flex: 1,   
+      backgroundColor: '#8E3A9D',  
+      justifyContent: 'space-between',
       flexDirection: 'column',
-
-      ...Platform.select({
-        ios: {
-          shadowColor: '#000',
-          shadowOffset: { width: 0, height: 2 },
-          shadowOpacity: 0.2,
-      },
-      android: {
-          elevation: 2
-      },
-      })
-
     },
- 
+
+    wrapTitles: {
+        flex: 4,
+        padding: 15, 
+        
+    },
+    
     wrapiss01TTitle: {
-        fontSize: 26,
+        fontSize: 30,
         color: 'white', 
         fontWeight: 'bold'
     },
 
     wrapiss01TTitle1: {
-        fontSize: 16,
+        fontSize: 18,
         color: 'white', 
     },
 
-    wrapiss02: {
-        flex: 4,
-        padding: 15,
+    selecbtns: {
+        backgroundColor: 'white',
+        flex: 2, 
+    },
+
+    selecbtnsCheckout: {
+        width: '300',
+        flex: 1, 
     }
+
+ 
 })
  

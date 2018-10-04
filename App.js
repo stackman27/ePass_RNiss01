@@ -10,7 +10,7 @@ import { Login } from './components/Login';
 import {Register} from './components/Register';
  
 const AppNavigator = StackNavigator({
-     LoginScreen: {
+    /*  LoginScreen: {
         screen: Login,    
         navigationOptions: {
           header: null,
@@ -26,13 +26,26 @@ const AppNavigator = StackNavigator({
 
       OverlayScreen: { 
              screen: Overlay,  
-          }, 
+          },  */
           
       ShowPassScreen: {  
         screen: ShowPass,
         navigationOptions: {
-          header: null,
-        }
+           headerTitle:    <View style = {{flex: 1, flexDirection: 'row', justifyContent: 'space-between', marginTop: -15}}> 
+                              <Text style = {{color: 'white', fontSize: 24, paddingLeft: 20, fontWeight: 'bold' }}>Checkout</Text>  
+                              <TouchableOpacity onPress = {() => alert('Log out')}>
+                                  <Text style = {{color: 'white', fontSize: 18,  paddingRight: 20 }}> Log Out</Text>
+                          </TouchableOpacity>
+                      </View>,
+
+          headerTintColor: '#ffffff',
+          headerLeft: null,
+          headerRight: null,
+           headerStyle: {
+            backgroundColor: '#8E3A9D',   
+           },  
+        
+        }  
       }, 
     }, {headerMode: 'screen'} );
 

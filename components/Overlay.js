@@ -240,10 +240,7 @@ txtValChange(value){
                                     null  
                                    )) 
                               }
-                        
                             />  
-
-                         
                         </View>
             </View>
 
