@@ -12,6 +12,7 @@ export  class ConfirmoutPopup extends React.Component {
         this.state = {
           passCode: null, 
           passId: null,
+          uOut_id: null,
         }
 
       this.checkoutUser = this.checkoutUser.bind(this); 
@@ -23,6 +24,7 @@ export  class ConfirmoutPopup extends React.Component {
       this.setState({
           passCode: this.props.confirmOutPassCode,
           passId: this.props.confirmOutPassId, 
+          uOut_id: this.props.uOut_id,
       })
  }
 
@@ -36,6 +38,7 @@ export  class ConfirmoutPopup extends React.Component {
 
           body: JSON.stringify({
             pass_owner_id: 1, 
+            userout_id: this.state.uOut_id,
             pass_id: this.state.passId, 
             pass_code: this.state.passCode,
             idcard_num: 92780, 

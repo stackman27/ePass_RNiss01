@@ -61,47 +61,41 @@ export default class RegisterUser extends React.Component {
   render(){
     return (
       <View>   
-
-          <Text> Register User </Text>
-           
-          <TextInput style={styles.inputBox} 
-              underlineColorAndroid='gray' 
-              placeholder="name"
+ 
+          <TextInput style={styles.inputBox}  
+              placeholder="Name"
               name = "name"
-              placeholderTextColor = "#9C9A9C"
-              selectionColor="gray" 
+              placeholderTextColor = "#ffffff"
+              selectionColor="#fff"
               keyboardType="default"
               onChangeText = {(name) => this.setState({name}) }
               value = {this.state.name}
               />
 
-          <TextInput style={styles.inputBox} 
-              underlineColorAndroid='gray' 
-              placeholder="email"
+          <TextInput style={styles.inputBox}  
+              placeholder="Email"
               name = "email"
-              placeholderTextColor = "#9C9A9C"
-              selectionColor="gray" 
+              placeholderTextColor = "#ffffff"
+              selectionColor="#fff" 
               keyboardType="email-address"
               onChangeText = {(email) => this.setState({email})}
               value = {this.state.email}
               />
 
-          <TextInput style={styles.inputBox} 
-              underlineColorAndroid='gray' 
-              placeholder="password"
+          <TextInput style={styles.inputBox}  
+              placeholder="Password"
               name = "password"
-              placeholderTextColor = "#9C9A9C"
-              selectionColor="gray" 
+              placeholderTextColor = "#ffffff"
+              selectionColor="#fff" 
               secureTextEntry={true}
               onChangeText = {(password) => this.setState({password})}
               value = {this.state.password}
               />
 
-          <TextInput style={styles.inputBox} 
-              underlineColorAndroid='gray' 
+          <TextInput style={styles.inputBox}  
               placeholder="Confirm Password"
-              placeholderTextColor = "#9C9A9C"
-              selectionColor="gray" 
+              placeholderTextColor = "#ffffff"
+              selectionColor="#fff" 
               name = "c_password"
               secureTextEntry={true}
               onChangeText = {(c_password) => this.setState({c_password})}
@@ -124,9 +118,9 @@ const styles = StyleSheet.create({
     backgroundColor:'rgba(255, 255,255,0.2)',
     borderRadius: 25,
     padding:10,
-    paddingLeft: 10, 
+    paddingLeft: 20, 
     fontSize:16,
-    color:'black',
+    color:'white',
     marginVertical: 10
   },
 

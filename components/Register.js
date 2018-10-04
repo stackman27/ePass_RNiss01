@@ -2,14 +2,14 @@ import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 
 
-import Logo from './Logo';
-import LoginUser from './ModelForms/LoginUser';
+import Logo from './Logo'; 
+import RegisterUser from './ModelForms/RegisterUser';
 
-export class Login extends React.Component { 
+export class Register extends React.Component { 
   
 
-    _gotoSignup = () => {
-        this.props.navigation.navigate('RegisterScreen'); 
+    _gotoSignin = () =>{
+        this.props.navigation.navigate('LoginScreen'); 
     }
 
  
@@ -18,12 +18,13 @@ export class Login extends React.Component {
       <View style = {styles.container}>
             <Logo />
              
-            <LoginUser type="Login" pressChange = {this.props.navigation}/>
+             <RegisterUser />
+
              
              <View style = {styles.signupTextCont}> 
-                  <Text style = {styles.signupText}> Don't have an account yet?</Text>
-                    <TouchableOpacity onPress = {this._gotoSignup}> 
-                        <Text style = {styles.signupButton}> SignUp </Text>
+                  <Text style = {styles.signupText}> Already have an account? </Text>
+                    <TouchableOpacity onPress = {this._gotoSignin}> 
+                        <Text style = {styles.signupButton}> SignIn </Text>
                     </TouchableOpacity> 
              </View>     
       </View>

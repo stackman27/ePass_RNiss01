@@ -3,18 +3,18 @@ import {StyleSheet, Text, View, FlatList,Platform, TouchableOpacity, TextInput, 
 import { PopupAddPass } from './PopupAddPass';
  
 import {BoxShadow} from 'react-native-shadow'
+import HeaderBasic from './header/HeaderBasic';
 
-
+ 
 export default class Overlay extends React.Component {
-
+ 
   constructor(props){
     super(props);  
       this.state = {
         dialogVisible: false,
         dataPasses: null,
         myRegPasses: null,  
-        txtVal: '',
-        u_apiToken: '',
+        txtVal: '', 
         u_id: '',
         u_name: '',
         u_email: '',
@@ -29,14 +29,31 @@ export default class Overlay extends React.Component {
    this._apigetUserInfo = this._apigetUserInfo.bind(this);
   }
 
-  componentDidMount(){
-    
-    this.setState({
-      u_apiToken: this.props.navigation.state.params.u_apiToken
-    });
-
+  static navigationOptions = ({navigation}) => { 
+    const {params = {}} = navigation.state;
+ 
+    return {
+      headerTitle: <HeaderBasic uName = {params.userName}/>, 
+      headerTintColor: '#ffffff',
+      headerLeft: null,
+      headerRight: null,
+       headerStyle: {
+        backgroundColor: '#8E3A9D',  
+        
+       }, 
+    }
+   
+}
+ 
+ 
+  componentDidMount(){ 
     this._apigetUserInfo();
+    this.get_UserRegPasses();
 
+  }
+
+
+  get_UserRegPasses(){
     let apiAllPasses = 'http://10.0.2.2:8000/api/allpasses';
     let apiMyRegPasses = 'http://10.0.2.2:8000/api/getregisterstudent';
  
@@ -62,19 +79,28 @@ export default class Overlay extends React.Component {
   }
 
   _apigetUserInfo(){
-
+     
     fetch('http://10.0.2.2:8000/api/details', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
         'Accept': 'application/json',
-        'Authorization': `Bearer ${this.state.u_apiToken}` 
+        'Authorization': `Bearer ${this.props.navigation.state.params.u_apiToken}` 
       }
     }).then((response) => response.json())
       .then((responseJson) => {
-        console.log(responseJson);
+        
+        this.setState({
+          u_name: responseJson.success.name,
+          u_id: responseJson.success.id
+        });
+
+        this.props.navigation.setParams({
+          userName: responseJson.success.name
+        })
+
       }).catch((error) => {
-        console.log(error);
+        console.log("ERROR FOR SURE", error);
       });
 
   }
@@ -93,8 +119,15 @@ export default class Overlay extends React.Component {
 
           if(subTxtCode == arrPasses[index]) {
             console.log("TRUE", subTxtCode);
-            this.createstdPass(3, subTxtCode);
+            this.createstdPass(this.state.u_id, subTxtCode);
             alert('Success'); 
+            this.get_UserRegPasses();
+            console.log("MYREGPASSES_AFTER REG: ", this.state.myRegPasses); 
+
+            this.setState({ 
+             dialogVisible: false
+            })
+
             break;
           } else {
             console.log('FALSE', subTxtCode);
@@ -137,6 +170,7 @@ export default class Overlay extends React.Component {
   }
   
 showDialog(){
+  console.log('CLICKED');
   this.setState({
     dialogVisible: true,
   })
@@ -188,15 +222,13 @@ txtValChange(value){
             
                     <View style = {styles.PassesContainer}>  
                         <View style = {styles.admitClasses}> 
-               
-      
-                       {/*      <FlatList 
+                   
+                          <FlatList 
                               data= {this.state.myRegPasses}
-                              renderItem = {({item}) => 
-
-                               this.state.dataPasses.map((pCode, i) => (
-                                (pCode.code === item.pass_code) ? 
-                                  <TouchableOpacity key = {i} onPress = {() => this.props.navigation.navigate('ShowPassScreen', {pass_code: item.pass_code, pass_name: pCode.name, pass_id: item.pass_id, teacId: item.teacher_id})}>  
+                              renderItem = {({item}) =>   
+                               this.state.dataPasses.map((pCode, i) => ( 
+                                (pCode.code === item.pass_code) && (item.user_id === this.state.u_id)  ?  
+                                  <TouchableOpacity key = {i} onPress = {() => this.props.navigation.navigate('ShowPassScreen', {pass_code: item.pass_code, pass_name: pCode.name, pass_id: item.pass_id, teacId: item.teacher_id, uOut_id: this.state.u_id})}>  
                                             <View style = {styles.myPasses}  > 
                                                 <Text style = {styles.mypassTxt}>  {pCode.name} </Text>  
                                         
@@ -209,7 +241,7 @@ txtValChange(value){
                                    )) 
                               }
                         
-                            /> */}
+                            />  
 
                          
                         </View>
