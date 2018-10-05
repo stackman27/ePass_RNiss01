@@ -1,7 +1,9 @@
 import React from 'react';
-import {StyleSheet, Text, View, Button, TouchableOpacity, Platform} from 'react-native';
+import {StyleSheet, Text, View, Button, TouchableOpacity, Platform, Dimensions} from 'react-native';
 import { ConfirmoutPopup } from './ConfirmoutPopup';
  
+var {width } = Dimensions.get('window');
+
 export  class ShowPass extends React.Component {  
 
     constructor(props){
@@ -35,24 +37,39 @@ export  class ShowPass extends React.Component {
         })
     }
 
+    _showConfirmInDialog() {
+        alert("Confirm In");
+    }
+
       
   render(){
     
     return (
-      <View style = {styles.contWrap}>   
+      <View style = {styles.contWrap}> 
 
-        <ConfirmoutPopup confirmOutPassId = {this.props.navigation.state.params.pass_id} uOut_id = {this.props.navigation.state.params.uOut_id} confirmOutPassCode = {this.props.navigation.state.params.pass_code} visibility = {this.state.dialogConfirmOutVisible} confirmCancel = {this._showConfirmOutDialogCancel} confirmCheckout = {this._showConfirmOutDialogCheckout}/>
+       <ConfirmoutPopup passOwnerid = {this.props.navigation.state.params.teacId} confirmOutPassId = {this.props.navigation.state.params.pass_id} uOut_id = {this.props.navigation.state.params.uOut_id} confirmOutPassCode = {this.props.navigation.state.params.pass_code} visibility = {this.state.dialogConfirmOutVisible} confirmCancel = {this._showConfirmOutDialogCancel} confirmCheckout = {this._showConfirmOutDialogCheckout}/>
+ 
+        <View style = {styles.wrapTitle}>  
+             <Text style = {styles.wrapiss01TTitle}>{this.props.navigation.state.params.pass_name} </Text>
+             <Text style = {styles.wrapiss01TTitle1}>{this.props.navigation.state.params.teacId}</Text>  
+        </View>
 
-        <View style = {styles.wrapiss01}> 
-        <TouchableOpacity onPress = {this._showConfirmOutDialog}> 
-                <Text style = {styles.wrapiss01TTitle}> {this.props.navigation.state.params.pass_name} </Text>  
-                <Text style = {styles.wrapiss01TTitle1}> {this.props.navigation.state.params.teacId} </Text>  
+
+        <View style = {styles.wrapbtns}>
+
+            <TouchableOpacity onPress = {this._showConfirmOutDialog} style = {[styles.btnOutIn, styles.btnCheckout]}>
+                <View  >
+                        <Text style = {styles.checkoText}> Check Out </Text>
+                </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress = {this._showConfirmInDialog}  style = {[styles.btnOutIn, styles.btnCheckin]} > 
+                <View >
+                        <Text style = {styles.checkiText}> Check In </Text>
+                </View>
             </TouchableOpacity>
         </View>
  
-        <View style = {styles.wrapiss02}> 
-        </View>
-
  
       </View>
     );
@@ -64,28 +81,14 @@ const styles = StyleSheet.create({
     contWrap: {
         flex: 1,    
         flexDirection: 'column', 
+        justifyContent:'space-evenly',
     },
 
-    wrapiss01: {
-      flex: 1,  
-      borderBottomColor: 'gray',
-      backgroundColor: '#DB4C40',
-      borderBottomWidth: 1,  
-      padding: 15,
-      justifyContent:'space-evenly',
-      flexDirection: 'column',
-
-      ...Platform.select({
-        ios: {
-          shadowColor: '#000',
-          shadowOffset: { width: 0, height: 2 },
-          shadowOpacity: 0.2,
-      },
-      android: {
-          elevation: 2
-      },
-      })
-
+    wrapTitle: {
+      flex: 4,   
+      backgroundColor: '#8E3A9D', 
+      justifyContent: 'center',
+      alignItems: 'center'
     },
  
     wrapiss01TTitle: {
@@ -99,9 +102,40 @@ const styles = StyleSheet.create({
         color: 'white', 
     },
 
-    wrapiss02: {
-        flex: 4,
-        padding: 15,
+    wrapbtns: {
+        flex: 2, 
+        backgroundColor: 'gray'
+    },
+
+    btnOutIn: {
+        flex: 1, 
+    },
+    
+    btnCheckin: {
+        backgroundColor: '#DC4E41',
+        width: width, 
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+
+    btnCheckout: {
+        backgroundColor: '#4B8BF4',
+        width: width,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderTopColor: 'transparent'
+      
+    },
+
+    checkoText: {
+        fontSize: 26, 
+        color: 'white'
+    },
+
+    checkiText: {
+        fontSize: 26, 
+        color: 'white'
     }
+ 
 })
  

@@ -10,7 +10,7 @@ import { Login } from './components/Login';
 import {Register} from './components/Register';
  
 const AppNavigator = StackNavigator({
-     LoginScreen: {
+      LoginScreen: {
         screen: Login,    
         navigationOptions: {
           header: null,
@@ -27,7 +27,7 @@ const AppNavigator = StackNavigator({
       OverlayScreen: { 
              screen: Overlay,  
           }, 
-          
+         
       ShowPassScreen: {  
         screen: ShowPass,
         navigationOptions: {

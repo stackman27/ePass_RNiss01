@@ -109,17 +109,22 @@ export default class Overlay extends React.Component {
     e.preventDefault();
     let subTxtCode = this.state.txtVal; 
     let arrPasses = [];
-    let correctCode; 
+    let teacherids = [];
+    let correctCode;  
 
     this.state.dataPasses.map((item) => {
       arrPasses.push(item.code);
+      teacherids.push(item.user_id);
     })
 
-    for (let index = 0; index < arrPasses.length; index++) {
-
+    for (let index = 0; index < arrPasses.length; index++) { 
           if(subTxtCode == arrPasses[index]) {
-            console.log("TRUE", subTxtCode);
-            this.createstdPass(this.state.u_id, subTxtCode);
+
+            console.log("TRUE", subTxtCode); 
+
+            console.log("Teachers Ids:", teacherids[index]);
+
+            this.createstdPass(this.state.u_id, subTxtCode, teacherids[index]);
             alert('Success'); 
             this.get_UserRegPasses();
             console.log("MYREGPASSES_AFTER REG: ", this.state.myRegPasses); 
@@ -155,7 +160,7 @@ export default class Overlay extends React.Component {
 
   } */
 
-  createstdPass(uId, passCode) {
+  createstdPass(uId, passCode, teacher_id) {
     fetch('http://10.0.2.2:8000/api/postregisterstudent', {
       method: 'POST',
       headers: {
@@ -164,6 +169,7 @@ export default class Overlay extends React.Component {
       },
       body: JSON.stringify({
           user_id: uId,
+          teacher_id: teacher_id,
           pass_code: passCode
       }),
   });

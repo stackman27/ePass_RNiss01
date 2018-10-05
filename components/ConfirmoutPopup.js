@@ -37,7 +37,7 @@ export  class ConfirmoutPopup extends React.Component {
         },
 
           body: JSON.stringify({
-            pass_owner_id: 1, 
+            pass_owner_id: this.props.passOwnerid, 
             userout_id: this.state.uOut_id,
             pass_id: this.state.passId, 
             pass_code: this.state.passCode,
