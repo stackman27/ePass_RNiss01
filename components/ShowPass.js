@@ -10,7 +10,7 @@ export  class ShowPass extends React.Component {
         super(props);
 
         this.state = {
-            dialogConfirmOutVisible: false, 
+            dialogConfirmOutVisible: false,  
         };
 
         this._showConfirmOutDialog = this._showConfirmOutDialog.bind(this);
@@ -57,7 +57,7 @@ export  class ShowPass extends React.Component {
 
         <View style = {styles.wrapbtns}>
 
-            <TouchableOpacity onPress = {this._showConfirmOutDialog} style = {[styles.btnOutIn, styles.btnCheckout]}>
+            <TouchableOpacity  onPress = {this._showConfirmOutDialog} style = {[styles.btnOutIn, styles.btnCheckout]}>
                 <View  >
                         <Text style = {styles.checkoText}> Check Out </Text>
                 </View>
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     btnCheckin: {
         backgroundColor: '#DC4E41',
         width: width, 
-        justifyContent: 'center',
+        justifyContent: 'center', 
         alignItems: 'center'
     },
 

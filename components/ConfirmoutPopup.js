@@ -12,21 +12,28 @@ export  class ConfirmoutPopup extends React.Component {
         this.state = {
           passCode: null, 
           passId: null,
-          uOut_id: null,
+          uOut_id: null, 
+          checkvis: false, 
         }
+
+  
 
       this.checkoutUser = this.checkoutUser.bind(this); 
     }
 
-
-
+ 
   componentDidMount() { 
       this.setState({
           passCode: this.props.confirmOutPassCode,
           passId: this.props.confirmOutPassId, 
-          uOut_id: this.props.uOut_id,
-      })
- }
+          uOut_id: this.props.uOut_id,  
+      });
+   }
+
+   componentWillReceiveProps(props) {
+    this.setState({checkvis: props.visibility,});
+}
+
 
   checkoutUser(){
     fetch('http://10.0.2.2:8000/api/outsideuser', {
@@ -45,13 +52,18 @@ export  class ConfirmoutPopup extends React.Component {
         }), 
       }).then((response) => {
         alert('Success');
+        this.setState({
+          checkvis: false, 
+        })
       });
   }
+
+  
 
   render(){
     return (
       <View>    
-          <Dialog.Container visible = {this.props.visibility}>
+          <Dialog.Container visible = {this.state.checkvis}>
             <Dialog.Title> Are you sure? </Dialog.Title> 
             <Dialog.Button label = "Cancel" onPress = {this.props.confirmCheckout} />
             <Dialog.Button label = "Checkout" onPress = {this.checkoutUser} />
