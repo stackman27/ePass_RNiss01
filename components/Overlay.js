@@ -4,6 +4,7 @@ import { PopupAddPass } from './PopupAddPass';
  
 import {BoxShadow} from 'react-native-shadow'
 import HeaderBasic from './header/HeaderBasic';
+import UserOutPasses from './ListPasses/UserOutPasses';
 
  
 export default class Overlay extends React.Component {
@@ -13,7 +14,7 @@ export default class Overlay extends React.Component {
       this.state = {
         dialogVisible: false,
         dataPasses: null,
-        myRegPasses: null,  
+        myRegPasses: null,   
         txtVal: '', 
         u_id: '',
         u_name: '',
@@ -27,6 +28,7 @@ export default class Overlay extends React.Component {
     this.txtValChange = this.txtValChange.bind(this);
    // this.logOutUser = this.logOutUser.bind(this);
    this._apigetUserInfo = this._apigetUserInfo.bind(this);
+   this.get_UserRegPasses = this.get_UserRegPasses.bind(this);
   }
 
   static navigationOptions = ({navigation}) => { 
@@ -45,41 +47,12 @@ export default class Overlay extends React.Component {
    
 }
  
- 
-  componentDidMount(){ 
-    this._apigetUserInfo();
-    this.get_UserRegPasses();
 
+  componentWillMount(){
+    this._apigetUserInfo(); 
   }
 
-
-  get_UserRegPasses(){
-    let apiAllPasses = 'http://10.0.2.2:8000/api/allpasses';
-    let apiMyRegPasses = 'http://10.0.2.2:8000/api/getregisterstudent';
- 
-  return fetch(apiAllPasses)
-    .then((response) => response.json())
-    .then((responseJson) => {
-        this.setState({
-          dataPasses: responseJson,
-        });
-
-        console.log("DATAPASSES: ", this.state.dataPasses);
-      }).then( () => {
-        fetch(apiMyRegPasses)
-          .then((response) => response.json())
-          .then((responseJson) => {
-              this.setState({
-                  myRegPasses: responseJson,
-              });
-              console.log("MYREGPASSES: ", this.state.myRegPasses); 
-          }).done();
-      }).done();
-
-  }
-
-  _apigetUserInfo(){
-     
+  _apigetUserInfo(){ 
     fetch('http://10.0.2.2:8000/api/details', {
       method: 'POST',
       headers: {
@@ -99,12 +72,41 @@ export default class Overlay extends React.Component {
           userName: responseJson.success.name
         })
 
+        this.get_UserRegPasses(); 
+
       }).catch((error) => {
         console.log("ERROR FOR SURE", error);
       });
 
   }
 
+
+  get_UserRegPasses(){
+ 
+    let apiAllPasses = 'http://10.0.2.2:8000/api/allpasses';
+    let apiMyRegPasses = 'http://10.0.2.2:8000/api/getregisterstudent';
+ 
+  return fetch(apiAllPasses)
+    .then((response) => response.json())
+    .then((responseJson) => {
+        this.setState({
+          dataPasses: responseJson,
+        });
+
+        console.log("DATAPASSES: ", this.state.dataPasses);
+      }).then( () => {
+        fetch(apiMyRegPasses)
+          .then((response) => response.json())
+          .then((responseJson) => {
+              this.setState({
+                  myRegPasses: responseJson,
+              });
+              console.log("MYREGPASSES: ", this.state.myRegPasses);  
+          }).done();
+      }).done(); 
+  }
+
+ 
   submitCodeHandle(e){
     e.preventDefault();
     let subTxtCode = this.state.txtVal; 
@@ -222,14 +224,13 @@ txtValChange(value){
 
  
     return (
-      <View style = {{flex: 1, backgroundColor: '#eee'}}> 
-
+      <View style = {{flex: 1, backgroundColor: '#eee'}}>  
               <PopupAddPass setVal = {this.state.txtVal} setChangeText = {this.txtValChange} setSubmitPass = {this.submitCodeHandle} visibility = {this.state.dialogVisible} onCancelClick = {this.handleCancel} onSubmitClick = {this.handleSubmit}/>
             
                     <View style = {styles.PassesContainer}>  
                         <View style = {styles.admitClasses}> 
-                   
-                          <FlatList 
+                    
+                        <FlatList 
                               data= {this.state.myRegPasses}
                               renderItem = {({item}) =>   
                                this.state.dataPasses.map((pCode, i) => ( 
@@ -237,9 +238,9 @@ txtValChange(value){
                                   <TouchableOpacity key = {i} onPress = {() => this.props.navigation.navigate('ShowPassScreen', {pass_code: item.pass_code, pass_name: pCode.name, pass_id: item.pass_id, teacId: item.teacher_id, uOut_id: this.state.u_id})}>  
                                             <View style = {styles.myPasses}  > 
                                                 <Text style = {styles.mypassTxt}>  {pCode.name} </Text>  
-                                        
-                                          <Text style = {styles.minOut}>9 m</Text>
-                                                 
+                                           
+                                                <UserOutPasses u_id = {this.state.u_id} itempassid = {item.pass_id} itemuserid = {item.user_id}/>
+                                                
                                             </View>
                                   </TouchableOpacity>
                                     :
@@ -249,7 +250,8 @@ txtValChange(value){
                         
                             />  
 
-                         
+                             
+ 
                         </View>
             </View>
 

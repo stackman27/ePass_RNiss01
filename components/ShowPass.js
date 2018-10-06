@@ -41,13 +41,15 @@ export  class ShowPass extends React.Component {
         alert("Confirm In");
     }
 
+
+
       
   render(){
     
     return (
       <View style = {styles.contWrap}> 
 
-       <ConfirmoutPopup passOwnerid = {this.props.navigation.state.params.teacId} confirmOutPassId = {this.props.navigation.state.params.pass_id} uOut_id = {this.props.navigation.state.params.uOut_id} confirmOutPassCode = {this.props.navigation.state.params.pass_code} visibility = {this.state.dialogConfirmOutVisible} confirmCancel = {this._showConfirmOutDialogCancel} confirmCheckout = {this._showConfirmOutDialogCheckout}/>
+       <ConfirmoutPopup pressgotoOverlay = {this.props.navigation} passOwnerid = {this.props.navigation.state.params.teacId} confirmOutPassId = {this.props.navigation.state.params.pass_id} uOut_id = {this.props.navigation.state.params.uOut_id} confirmOutPassCode = {this.props.navigation.state.params.pass_code} visibility = {this.state.dialogConfirmOutVisible} confirmCancel = {this._showConfirmOutDialogCancel} confirmCheckout = {this._showConfirmOutDialogCheckout}/>
  
         <View style = {styles.wrapTitle}>  
              <Text style = {styles.wrapiss01TTitle}>{this.props.navigation.state.params.pass_name} </Text>

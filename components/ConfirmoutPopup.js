@@ -54,10 +54,14 @@ export  class ConfirmoutPopup extends React.Component {
         alert('Success');
         this.setState({
           checkvis: false, 
-        })
+        });
+        this._gotoOverlay();
       });
   }
 
+  _gotoOverlay = () => {
+    this.props.pressgotoOverlay.navigate('OverlayScreen'); 
+  }
   
 
   render(){
