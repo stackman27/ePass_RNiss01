@@ -19,6 +19,7 @@ export default class Overlay extends React.Component {
         u_id: '',
         u_name: '',
         u_email: '',
+        
     }; 
 
     this.showDialog = this.showDialog.bind(this);
@@ -29,6 +30,8 @@ export default class Overlay extends React.Component {
    // this.logOutUser = this.logOutUser.bind(this);
    this._apigetUserInfo = this._apigetUserInfo.bind(this);
    this.get_UserRegPasses = this.get_UserRegPasses.bind(this);
+
+   
   }
 
   static navigationOptions = ({navigation}) => { 
@@ -49,7 +52,7 @@ export default class Overlay extends React.Component {
  
 
   componentWillMount(){
-    this._apigetUserInfo(); 
+    this._apigetUserInfo();  
   }
 
   _apigetUserInfo(){ 
@@ -73,6 +76,7 @@ export default class Overlay extends React.Component {
         })
 
         this.get_UserRegPasses(); 
+         
 
       }).catch((error) => {
         console.log("ERROR FOR SURE", error);
@@ -132,7 +136,7 @@ export default class Overlay extends React.Component {
             console.log("MYREGPASSES_AFTER REG: ", this.state.myRegPasses); 
 
             this.setState({ 
-             dialogVisible: false
+              dialogVisible: false
             })
 
             break;
@@ -176,7 +180,8 @@ export default class Overlay extends React.Component {
       }),
   });
   }
-  
+
+ 
 showDialog(){
   console.log('CLICKED');
   this.setState({
@@ -205,6 +210,9 @@ txtValChange(value){
     txtVal: value
   })
 }
+
+
+
  
  render = () =>{
 
@@ -233,25 +241,22 @@ txtValChange(value){
                         <FlatList 
                               data= {this.state.myRegPasses}
                               renderItem = {({item}) =>   
-                               this.state.dataPasses.map((pCode, i) => ( 
-                                (pCode.code === item.pass_code) && (item.user_id === this.state.u_id)  ?  
-                                  <TouchableOpacity key = {i} onPress = {() => this.props.navigation.navigate('ShowPassScreen', {pass_code: item.pass_code, pass_name: pCode.name, pass_id: item.pass_id, teacId: item.teacher_id, uOut_id: this.state.u_id})}>  
-                                            <View style = {styles.myPasses}  > 
-                                                <Text style = {styles.mypassTxt}>  {pCode.name} </Text>  
-                                           
-                                                <UserOutPasses u_id = {this.state.u_id} itempassid = {item.pass_id} itemuserid = {item.user_id}/>
-                                                
-                                            </View>
-                                  </TouchableOpacity>
-                                    :
-                                    null  
-                                   )) 
-                              }
-                        
-                            />  
+                              this.state.dataPasses.map((pCode, i) => ( 
+                                (pCode.code === item.pass_code) && (item.user_id === this.state.u_id)  ? 
+                                  
+                                    <TouchableOpacity key = {i} onPress = {() => this.props.navigation.navigate('ShowPassScreen', {pass_code: item.pass_code, pass_name: pCode.name, pass_id: item.pass_id, teacId: item.teacher_id, uOut_id: this.state.u_id})}>  
+                                    <View style = {styles.myPasses}  > 
+                                        <Text style = {styles.mypassTxt}>  {pCode.name} </Text> 
+                                         
+                                          <UserOutPasses u_id= {this.state.u_id} itempassid = {item.pass_id} itemuserid = {item.user_id} />
 
-                             
- 
+                                        </View>
+                                  </TouchableOpacity> 
+                                    :
+                                    null
+                              ))
+                              }
+                            />  
                         </View>
             </View>
 

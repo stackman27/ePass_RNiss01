@@ -4,7 +4,7 @@ import {
   Text,
   View, 
 } from 'react-native';
-
+ 
 export default class UserOutPasses extends Component  {
 
     constructor(props){
@@ -24,7 +24,7 @@ export default class UserOutPasses extends Component  {
             .then((responseJson) => {
                 this.setState ({
                     myOutPass: responseJson
-                });
+                }); 
             }).done();
         
     }
@@ -43,5 +43,7 @@ export default class UserOutPasses extends Component  {
 			)
 	}
 }
+
+ 
 
  
