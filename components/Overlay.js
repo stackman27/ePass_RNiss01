@@ -18,8 +18,8 @@ export default class Overlay extends React.Component {
         txtVal: '', 
         u_id: '',
         u_name: '',
-        u_email: '',
-        
+        u_email: '', 
+        myOutPass: [],
     }; 
 
     this.showDialog = this.showDialog.bind(this);
@@ -55,6 +55,17 @@ export default class Overlay extends React.Component {
     this._apigetUserInfo();  
   }
 
+  //this.props.navigation.state.params.updatedMyPassOut
+  componentWillReceiveProps(newProps){
+     const updProps = this.props.navigation.state.params.updatedMyPassOut;
+
+     this.setState({
+        myOutPass: updProps
+     });
+     
+     console.log("SUCCCCCCCCCCCCCCCESSSS", this.state.updProps);
+  }
+
   _apigetUserInfo(){ 
     fetch('http://10.0.2.2:8000/api/details', {
       method: 'POST',
@@ -76,6 +87,7 @@ export default class Overlay extends React.Component {
         })
 
         this.get_UserRegPasses(); 
+        this._uOutList();
          
 
       }).catch((error) => {
@@ -142,8 +154,7 @@ export default class Overlay extends React.Component {
             break;
           } else {
             console.log('FALSE', subTxtCode);
-          }
-
+          } 
     }
   }
 
@@ -181,6 +192,19 @@ export default class Overlay extends React.Component {
   });
   }
 
+  _uOutList = () => {
+    let apiPassOut = `http://10.0.2.2:8000/api/allOutUsers/${this.state.u_id}`;
+         
+    return fetch(apiPassOut)
+        .then((response) => response.json())
+        .then((responseJson) => {
+            this.setState ({
+                myOutPass: responseJson
+            }); 
+        }).done();
+    
+  }
+
  
 showDialog(){
   console.log('CLICKED');
@@ -210,8 +234,6 @@ txtValChange(value){
     txtVal: value
   })
 }
-
-
 
  
  render = () =>{
@@ -248,7 +270,7 @@ txtValChange(value){
                                     <View style = {styles.myPasses}  > 
                                         <Text style = {styles.mypassTxt}>  {pCode.name} </Text> 
                                          
-                                          <UserOutPasses u_id= {this.state.u_id} itempassid = {item.pass_id} itemuserid = {item.user_id} />
+                                          <UserOutPasses myOutPass = {this.state.myOutPass} u_id= {this.state.u_id} itempassid = {item.pass_id} itemuserid = {item.user_id} />
 
                                         </View>
                                   </TouchableOpacity> 

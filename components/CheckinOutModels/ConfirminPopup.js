@@ -13,7 +13,8 @@ export  class ConfirminPopup extends React.Component {
           passCode: null, 
           passId: null,
           uOut_id: null, 
-          checkvis: false,   
+          checkvis: false,  
+          myOutPass: [],  
         }
       this.checkinUser = this.checkinUser.bind(this); 
     }
@@ -24,6 +25,7 @@ export  class ConfirminPopup extends React.Component {
           passCode: this.props.confirmInPassCode,
           passId: this.props.confirmInPassId, 
           uOut_id: this.props.uOut_id,  
+           
       });
    }
 
@@ -34,6 +36,7 @@ export  class ConfirminPopup extends React.Component {
 
   checkinUser(){ 
    this._delOutsideUser_temp();
+   
   // this._updStatsUser_perm(); 
   }
 
@@ -46,7 +49,7 @@ export  class ConfirminPopup extends React.Component {
     // delete user from Outside User
    let apiStdCheckin = `http://10.0.2.2:8000/api/outsideuser_custom/${this.props.pressgotoOverlay.state.params.uOut_id}/${this.props.pressgotoOverlay.state.params.pass_id}`;
 
-    return fetch(apiStdCheckin, {
+    return fetch(apiStdCheckin, { 
         method: 'DELETE',
   
     }).then((response) => {
@@ -54,9 +57,26 @@ export  class ConfirminPopup extends React.Component {
         this.setState({
           checkvis: false, 
         });
+        this.getUserOut();
         this._gotoOverlay();
     }) 
 
+}
+
+getUserOut = () => {
+ 
+    let apiPassOut = `http://10.0.2.2:8000/api/allOutUsers/${this.props.pressgotoOverlay.state.params.uOut_id}`;
+         
+  return fetch(apiPassOut)
+      .then((response) => response.json())
+      .then((responseJson) => {
+          this.setState ({
+              myOutPass: responseJson
+          }); 
+          console.log("CONFIRM IN POPUP OUT STUDENTS", this.state.myOutPass);
+           
+        }).done();
+ 
 }
 
   _updStatsUser_perm(){ 
@@ -65,7 +85,7 @@ export  class ConfirminPopup extends React.Component {
   }
 
   _gotoOverlay = () => {
-    this.props.pressgotoOverlay.navigate('OverlayScreen'); 
+    this.props.pressgotoOverlay.navigate('OverlayScreen', {updatedMyPassOut: this.state.myOutPass}); 
   }
   
 
