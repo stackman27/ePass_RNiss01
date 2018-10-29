@@ -70,7 +70,7 @@ export  class ShowPass extends React.Component {
     }
 
     _getOutsideDetails(){
-        let apiStdCheckin = `http://10.0.2.2:8000/api/outsideuser`;
+        let apiStdCheckin = `http://fstedie.fatcow.com/public_html/index.php/api/outsideuser`;
 
         return fetch(apiStdCheckin)
             .then((response) => response.json())
@@ -83,7 +83,7 @@ export  class ShowPass extends React.Component {
     }
  
     _findUsersDetails(){ 
-        let apiTeachInfo = `http://10.0.2.2:8000/api/getteachinfo/${this.props.navigation.state.params.teacId}`;
+        let apiTeachInfo = `http://fstedie.fatcow.com/public_html/index.php/api/getteachinfo/${this.props.navigation.state.params.teacId}`;
 
         return fetch(apiTeachInfo)
             .then((response) => response.json())

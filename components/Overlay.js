@@ -67,7 +67,7 @@ export default class Overlay extends React.Component {
   }
 
   _apigetUserInfo(){ 
-    fetch('http://10.0.2.2:8000/api/details', {
+    fetch('http://fstedie.fatcow.com/public_html/index.php/api/details', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -99,8 +99,8 @@ export default class Overlay extends React.Component {
 
   get_UserRegPasses(){
  
-    let apiAllPasses = 'http://10.0.2.2:8000/api/allpasses';
-    let apiMyRegPasses = 'http://10.0.2.2:8000/api/getregisterstudent';
+    let apiAllPasses = 'http://fstedie.fatcow.com/public_html/index.php/api/allpasses';
+    let apiMyRegPasses = 'http://fstedie.fatcow.com/public_html/index.php/api/getregisterstudent';
  
   return fetch(apiAllPasses)
     .then((response) => response.json())
@@ -178,7 +178,7 @@ export default class Overlay extends React.Component {
   } */
 
   createstdPass(uId, passCode, teacher_id) {
-    fetch('http://10.0.2.2:8000/api/postregisterstudent', {
+    fetch('http://fstedie.fatcow.com/public_html/index.php/api/postregisterstudent', {
       method: 'POST',
       headers: {
           Accept: 'application/json',
@@ -193,7 +193,7 @@ export default class Overlay extends React.Component {
   }
 
   _uOutList = () => {
-    let apiPassOut = `http://10.0.2.2:8000/api/allOutUsers/${this.state.u_id}`;
+    let apiPassOut = `http://fstedie.fatcow.com/public_html/index.php/api/allOutUsers/${this.state.u_id}`;
          
     return fetch(apiPassOut)
         .then((response) => response.json())

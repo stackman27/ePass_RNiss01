@@ -35,9 +35,9 @@ export default class Testiss extends Component  {
     }
 
     _getUserRegPasses = () => {
-        let apiAllPasses = 'http://10.0.2.2:8000/api/allpasses';
-        let apiMyRegPasses = 'http://10.0.2.2:8000/api/getregisterstudent';
-        let apiPassOut = `http://10.0.2.2:8000/api/allOutUsers/1`;
+        let apiAllPasses = 'http://fstedie.fatcow.com/public_html/index.php/api/allpasses';
+        let apiMyRegPasses = 'http://fstedie.fatcow.com/public_html/index.php/api/getregisterstudent';
+        let apiPassOut = `http://fstedie.fatcow.com/public_html/index.php/api/allOutUsers/1`;
 
       return fetch(apiAllPasses)
         .then((response) => response.json())

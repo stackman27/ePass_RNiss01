@@ -38,7 +38,7 @@ export  class ConfirmoutPopup extends React.Component {
   }
 
   _postOutsideUser_temp(){
-    fetch('http://10.0.2.2:8000/api/outsideuser', {
+    fetch('http://fstedie.fatcow.com/public_html/index.php/api/outsideuser', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -62,7 +62,7 @@ export  class ConfirmoutPopup extends React.Component {
   }
 
   _postStatsUser_perm(){ 
-    fetch('http://10.0.2.2:8000/api/totalstats', {
+    fetch('http://fstedie.fatcow.com/public_html/index.php/api/totalstats', {
       method: 'POST',
       headers: {
         Accept: 'application/json',

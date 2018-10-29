@@ -47,7 +47,7 @@ export  class ConfirminPopup extends React.Component {
     console.log("STATE PARAM PASSID", this.props.pressgotoOverlay.state.params.pass_id);
 
     // delete user from Outside User
-   let apiStdCheckin = `http://10.0.2.2:8000/api/outsideuser_custom/${this.props.pressgotoOverlay.state.params.uOut_id}/${this.props.pressgotoOverlay.state.params.pass_id}`;
+   let apiStdCheckin = `http://fstedie.fatcow.com/public_html/index.php/api/outsideuser_custom/${this.props.pressgotoOverlay.state.params.uOut_id}/${this.props.pressgotoOverlay.state.params.pass_id}`;
 
     return fetch(apiStdCheckin, { 
         method: 'DELETE',
@@ -65,7 +65,7 @@ export  class ConfirminPopup extends React.Component {
 
 getUserOut = () => {
  
-    let apiPassOut = `http://10.0.2.2:8000/api/allOutUsers/${this.props.pressgotoOverlay.state.params.uOut_id}`;
+    let apiPassOut = `http://fstedie.fatcow.com/public_html/index.php/api/allOutUsers/${this.props.pressgotoOverlay.state.params.uOut_id}`;
          
   return fetch(apiPassOut)
       .then((response) => response.json())

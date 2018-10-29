@@ -29,7 +29,7 @@ export default class LoginUser extends Component {
   handleSubmit(e){
     e.preventDefault(); 
 
-    fetch('http://10.0.2.2:8000/api/login', {
+    fetch('http://fstedie.fatcow.com/public_html/index.php/api/login', {
       method: 'POST',
       headers: {
         Accept: 'application/json',

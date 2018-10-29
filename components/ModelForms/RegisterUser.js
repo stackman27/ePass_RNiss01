@@ -21,7 +21,7 @@ export default class RegisterUser extends React.Component {
     e.preventDefault();
     console.log(this.state);
 
-    let apiPostUser = 'http://10.0.2.2:8000/api/register';
+    let apiPostUser = 'http://fstedie.fatcow.com/public_html/index.php/api/register';
 
     fetch(apiPostUser, {
       method: 'POST',
