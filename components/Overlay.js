@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, FlatList,Platform, TouchableOpacity, TextInput,  TouchableHighlight, Button, Dimensions} from 'react-native';
+import {StyleSheet, ActivityIndicator, Text, View, FlatList,Platform, TouchableOpacity, TextInput,  TouchableHighlight, Button, Dimensions} from 'react-native';
 import { PopupAddPass } from './PopupAddPass';
  
 import {BoxShadow} from 'react-native-shadow'
@@ -19,7 +19,7 @@ export default class Overlay extends React.Component {
         u_id: '',
         u_name: '',
         u_email: '', 
-        myOutPass: [],
+        refreshing: false,  
     }; 
 
     this.showDialog = this.showDialog.bind(this);
@@ -49,22 +49,12 @@ export default class Overlay extends React.Component {
     }
    
 }
- 
 
   componentWillMount(){
     this._apigetUserInfo();  
   }
 
-  //this.props.navigation.state.params.updatedMyPassOut
-  componentWillReceiveProps(newProps){
-     const updProps = this.props.navigation.state.params.updatedMyPassOut;
-
-     this.setState({
-        myOutPass: updProps
-     });
-     
-     console.log("SUCCCCCCCCCCCCCCCESSSS", this.state.updProps);
-  }
+   
 
   _apigetUserInfo(){ 
     fetch('http://fstedie.fatcow.com/public_html/index.php/api/details', {
@@ -199,8 +189,11 @@ export default class Overlay extends React.Component {
         .then((response) => response.json())
         .then((responseJson) => {
             this.setState ({
-                myOutPass: responseJson
+                myOutPass: responseJson,  
+                refreshing: true, 
             }); 
+
+            console.log("SUCCESSSSSSSSS", this.state.myOutPass);
         }).done();
     
   }
@@ -255,31 +248,47 @@ txtValChange(value){
  
     return (
       <View style = {{flex: 1, backgroundColor: '#eee'}}>  
+
+      
+
               <PopupAddPass setVal = {this.state.txtVal} setChangeText = {this.txtValChange} setSubmitPass = {this.submitCodeHandle} visibility = {this.state.dialogVisible} onCancelClick = {this.handleCancel} onSubmitClick = {this.handleSubmit}/>
             
                     <View style = {styles.PassesContainer}>  
                         <View style = {styles.admitClasses}> 
-                    
-                        <FlatList 
+   
+                         <FlatList 
                               data= {this.state.myRegPasses}
+                              extraData={this.state.myOutPass} // Magic Code for Update
                               renderItem = {({item}) =>   
                               this.state.dataPasses.map((pCode, i) => ( 
                                 (pCode.code === item.pass_code) && (item.user_id === this.state.u_id)  ? 
                                   
-                                    <TouchableOpacity key = {i} onPress = {() => this.props.navigation.navigate('ShowPassScreen', {pass_code: item.pass_code, pass_name: pCode.name, pass_id: item.pass_id, teacId: item.teacher_id, uOut_id: this.state.u_id})}>  
+                                    <TouchableOpacity key = {i} onPress = {() => this.props.navigation.navigate('ShowPassScreen', {updateOut: this._uOutList, pass_code: item.pass_code, pass_name: pCode.name, pass_id: item.pass_id, teacId: item.teacher_id, uOut_id: this.state.u_id})}>  
                                     <View style = {styles.myPasses}  > 
                                         <Text style = {styles.mypassTxt}>  {pCode.name} </Text> 
                                          
-                                          <UserOutPasses myOutPass = {this.state.myOutPass} u_id= {this.state.u_id} itempassid = {item.pass_id} itemuserid = {item.user_id} />
-
+                                        <View> 
+                                            {this.state.myOutPass.map((ouser, i) => (
+                                              (ouser.pass_id === item.pass_id) && (ouser.userout_id === item.user_id) ?
+                                              <ActivityIndicator size="small" color="#0000ff" />  
+                                              :
+                                              null
+                                              ))
+                                            }
+                                          </View>
+                                         
+                                          
+                                          {/* <UserOutPasses myOutPass = {this.state.myOutPass} u_id= {this.state.u_id} itempassid = {item.pass_id} itemuserid = {item.user_id} />
+ */}
                                         </View>
                                   </TouchableOpacity> 
                                     :
                                     null
                               ))
                               }
-                            />  
+                            />    
                         </View>
+
             </View>
 
               <View style = {styles.positionInBottom}>  

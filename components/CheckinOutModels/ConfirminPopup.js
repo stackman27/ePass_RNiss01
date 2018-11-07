@@ -35,9 +35,8 @@ export  class ConfirminPopup extends React.Component {
 
 
   checkinUser(){ 
-   this._delOutsideUser_temp();
-   
-  // this._updStatsUser_perm(); 
+   this._updStatsUser_perm(); 
+   this._delOutsideUser_temp(); 
   }
 
  
@@ -81,10 +80,24 @@ getUserOut = () => {
 
   _updStatsUser_perm(){ 
     // Update the Checkin Time
-
+      fetch('http://fstedie.fatcow.com/public_html/index.php/api/totalstats', {
+        method: 'PUT',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+  
+          body: JSON.stringify({
+            pass_owner_id: this.props.passOwnerid, 
+            userout_id: this.state.uOut_id,
+            pass_id: this.state.passId,  
+            idcard_num: 92780, 
+        }), 
+      }).done();
   }
 
   _gotoOverlay = () => {
+    this.props.pressgotoOverlay.state.params.updateOut();
     this.props.pressgotoOverlay.navigate('OverlayScreen', {updatedMyPassOut: this.state.myOutPass}); 
   }
   

@@ -17,6 +17,10 @@ export class Login extends React.Component {
     return (
       <View style = {styles.container}>
             <Logo />
+
+            <View style = {styles.fidgetSpinner}> 
+
+            </View> 
              
             <LoginUser type="Login" pressChange = {this.props.navigation}/>
              
@@ -37,6 +41,10 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center'
+    },
+
+    fidgetSpinner:{
+
     },
 
     signupTextCont: {

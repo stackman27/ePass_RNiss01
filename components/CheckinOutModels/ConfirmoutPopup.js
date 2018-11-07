@@ -14,11 +14,12 @@ export  class ConfirmoutPopup extends React.Component {
           passId: null,
           uOut_id: null, 
           checkvis: false,   
+           
         }
       this.checkoutUser = this.checkoutUser.bind(this); 
+    
     }
 
- 
   componentDidMount() { 
       this.setState({
           passCode: this.props.confirmOutPassCode,
@@ -32,7 +33,7 @@ export  class ConfirmoutPopup extends React.Component {
 }
 
 
-  checkoutUser(){
+  checkoutUser(){ 
    this._postStatsUser_perm();
    this._postOutsideUser_temp();
   }
@@ -56,8 +57,8 @@ export  class ConfirmoutPopup extends React.Component {
       alert('Success');
       this.setState({
         checkvis: false, 
-      });
-      this._gotoOverlay();
+      }); 
+     this._gotoOverlay();   
     });
   }
 
@@ -78,9 +79,11 @@ export  class ConfirmoutPopup extends React.Component {
     }).done();
   }
 
-  _gotoOverlay = () => {
-    this.props.pressgotoOverlay.navigate('OverlayScreen'); 
-  }
+  _gotoOverlay = () => {  
+    this.props.pressgotoOverlay.state.params.updateOut();
+    this.props.pressgotoOverlay.navigate('OverlayScreen');  
+     
+   }
   
 
   render(){
@@ -88,9 +91,11 @@ export  class ConfirmoutPopup extends React.Component {
       <View>    
           <Dialog.Container visible = {this.state.checkvis}>
             <Dialog.Title> Are you sure? </Dialog.Title> 
-            <Dialog.Button label = "Cancel" onPress = {this.props.confirmCheckout} />
-            <Dialog.Button label = "Checkout" onPress = {this.checkoutUser} />
+            <Dialog.Button label = "Cancel" onPress = {this.props.confirmCheckout} /> 
+            <Dialog.Button label = "Checkout" onPress = {this.checkoutUser}/>   
         </Dialog.Container>
+
+                    
 
       </View>
     );

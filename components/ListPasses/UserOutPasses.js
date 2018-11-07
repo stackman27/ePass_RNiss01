@@ -14,10 +14,6 @@ export default class UserOutPasses extends Component  {
         }
     }
 
-
-
-    
-
     render(){
 		return(
 			<View> 
@@ -27,7 +23,6 @@ export default class UserOutPasses extends Component  {
                     :
                     null
                ))}
-                
   			</View>
 			)
 	}
