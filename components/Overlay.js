@@ -270,7 +270,7 @@ txtValChange(value){
                                         <View> 
                                             {this.state.myOutPass.map((ouser, i) => (
                                               (ouser.pass_id === item.pass_id) && (ouser.userout_id === item.user_id) ?
-                                              <ActivityIndicator size="small" color="#0000ff" />  
+                                              <Text key = {i}>Out</Text>
                                               :
                                               null
                                               ))

@@ -9,7 +9,8 @@ import {
   Button
 } from 'react-native';
  
- 
+var width = Dimensions.get('window').width; //full width
+
 export default class Form extends Component {
 
   constructor(props){
@@ -102,10 +103,10 @@ const styles = StyleSheet.create({
   },
 
   inputBox: {
-    width: 300,
+    width: width,
     backgroundColor:'rgba(255, 255,255,0.2)',
     borderRadius: 25,
-    padding:10,
+    padding:20,
     paddingLeft: 20, 
     fontSize:16,
     color:'#ffffff',
