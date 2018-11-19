@@ -38,7 +38,7 @@ export default class Overlay extends React.Component {
     const {params = {}} = navigation.state;
  
     return {
-      headerTitle: <HeaderBasic uName = {params.userName}/>, 
+      headerTitle: <HeaderBasic   uName = {params.userName} UapiToken = {params.u_apiToken}/>, 
       headerTintColor: '#ffffff',
       headerLeft: null,
       headerRight: null,
@@ -50,11 +50,14 @@ export default class Overlay extends React.Component {
    
 }
 
+
+  logoutAlert () {
+      alert('logoutMe');
+  }
+
   componentWillMount(){
     this._apigetUserInfo();  
   }
-
-   
 
   _apigetUserInfo(){ 
     fetch('http://fstedie.fatcow.com/public_html/index.php/api/details', {
@@ -148,24 +151,7 @@ export default class Overlay extends React.Component {
     }
   }
 
-/*   logOutUser(e){
-    e.preventDefault();
- 
-    fetch('http://10.0.2.2:8000/api/logout', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Accept': 'application/json',
-          'Authorization': `Bearer ${this.state.u_apiToken}` 
-        }
-    }).then((response) => response.json())
-      .then((responseJson) => {
-        console.log(responseJson);
-      }).catch((error) => {
-        console.log(error);
-      });
-
-  } */
+  
 
   createstdPass(uId, passCode, teacher_id) {
     fetch('http://fstedie.fatcow.com/public_html/index.php/api/postregisterstudent', {
