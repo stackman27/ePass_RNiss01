@@ -1,7 +1,7 @@
 import React from 'react';
-import {StyleSheet, TextInput,  Form, Text, View, StatusBar, FlatList, TouchableOpacity,   Button, Dimensions} from 'react-native';
+import {StyleSheet, TextInput,  Form, Text, View, StatusBar, FlatList, TouchableOpacity, Button, Dimensions, Platform } from 'react-native';
 import { PopupAddPass } from './components/PopupAddPass'; 
-import {StackNavigator} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation';
  
 
 import Overlay from './components/Overlay';
@@ -10,7 +10,7 @@ import { Login } from './components/Login';
 import {Register} from './components/Register';
 import Testiss from './components/Testiss';
  
-const AppNavigator = StackNavigator({
+const AppNavigator = createStackNavigator({
       LoginScreen: {
         screen: Login,    
         navigationOptions: {
@@ -44,23 +44,38 @@ const AppNavigator = StackNavigator({
       }, 
     }, {headerMode: 'screen'} );
 
+
+    const MyStatusBar = ({backgroundColor, ...props}) => (
+      <View style={[styles.statusBar, { backgroundColor }]}>
+        <StatusBar translucent backgroundColor={backgroundColor} {...props} />
+      </View>
+    );
+    
+
+
 export default class App extends React.Component { 
    
   render(){
     return (
-      <View style={styles.container}>   
+      <View style={styles.container}>    
+       <MyStatusBar backgroundColor="#8E3A9D" barStyle="light-content" /> 
+
            <AppNavigator />
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1, 
-    marginTop: 22, 
-    backgroundColor: 'transparent', 
-  }, 
+const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 24 : StatusBar.currentHeight;
  
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,  
+  }, 
+ 
+  statusBar: {
+    height: STATUSBAR_HEIGHT,
+  },
+ 
 });

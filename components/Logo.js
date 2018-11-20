@@ -3,7 +3,8 @@ import {
   StyleSheet,
   Text,
   View,
-   Image 
+   Image,
+   Platform
 } from 'react-native';
 
 export default class Logo extends Component  {
@@ -22,10 +23,17 @@ const styles = StyleSheet.create({
     justifyContent:'flex-end',
     alignItems: 'center'
   },
-  logoText : {
-  	marginVertical: 15,
-    fontSize:48,
+  logoText : { 
+    marginVertical: 15, 
     fontWeight: 'bold',
-  	color:'rgba(255, 255, 255, 0.7)'
-  }
+  	color:'rgba(255, 255, 255, 0.7)',
+      ...Platform.select({
+        ios: {
+          fontSize:60,
+        },
+        android: {
+          fontSize:52,
+        },
+      }),
+  },
 });

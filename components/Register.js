@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
 
     signupTextCont: {
         flexGrow: 1,
-        alignItems: 'flex-end',
+        alignItems: 'center',
         justifyContent: 'center',
         paddingVertical: 16,
         flexDirection: 'row'
@@ -54,8 +54,8 @@ const styles = StyleSheet.create({
     },
     signupButton: {
         color: '#ffffff',
-        fontSize: 16, 
-        fontWeight: '500'
+        fontSize: 18, 
+        fontWeight: '700'
     }
 });
  

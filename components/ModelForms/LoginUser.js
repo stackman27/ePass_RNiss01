@@ -6,10 +6,12 @@ import {
   TextInput,
   TouchableOpacity,
   Dimensions,
-  Button
+  Button,
+  Platform
 } from 'react-native';
  
- 
+var width = Dimensions.get('window').width; //full width
+
 export default class LoginUser extends Component {
 
   constructor(props){
@@ -102,15 +104,23 @@ const styles = StyleSheet.create({
   },
 
   inputBox: {
-    width: 300,
-    backgroundColor:'rgba(255, 255,255,0.2)',
+    width: width - 30,
+    backgroundColor:'#A167AC',
     borderRadius: 25,
-    padding:10,
     paddingLeft: 20, 
     fontSize:16,
     color:'#ffffff',
-    marginVertical: 10
+    marginVertical: 10,
+    ...Platform.select({
+      ios: {
+        padding:15,
+      },
+      android: {
+        padding:10,
+      },
+    }),
   },
+
   button: {
     width:300,
     backgroundColor:'#1c313a',

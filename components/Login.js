@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, StatusBar} from 'react-native';
 
 
 import Logo from './Logo';
@@ -27,9 +27,10 @@ export class Login extends React.Component {
              <View style = {styles.signupTextCont}> 
                   <Text style = {styles.signupText}> Don't have an account yet?</Text>
                     <TouchableOpacity onPress = {this._gotoSignup}> 
-                        <Text style = {styles.signupButton}> SignUp </Text>
-                    </TouchableOpacity> 
+                        <Text style = {styles.signupButton}> SignUp </Text> 
+                    </TouchableOpacity>  
              </View>     
+            
       </View>
     );
   }
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
 
     signupTextCont: {
         flexGrow: 1,
-        alignItems: 'flex-end',
+        alignItems: 'center',
         justifyContent: 'center',
         paddingVertical: 16,
         flexDirection: 'row'
@@ -61,8 +62,8 @@ const styles = StyleSheet.create({
     },
     signupButton: {
         color: '#ffffff',
-        fontSize: 16, 
-        fontWeight: '500'
+        fontSize: 18, 
+        fontWeight: '700'
     }
 });
  

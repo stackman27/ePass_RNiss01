@@ -242,37 +242,37 @@ txtValChange(value){
                     <View style = {styles.PassesContainer}>  
                         <View style = {styles.admitClasses}> 
    
-                         <FlatList 
-                              data= {this.state.myRegPasses}
-                              extraData={this.state.myOutPass} // Magic Code for Update
-                              renderItem = {({item}) =>   
-                              this.state.dataPasses.map((pCode, i) => ( 
-                                (pCode.code === item.pass_code) && (item.user_id === this.state.u_id)  ? 
-                                  
-                                    <TouchableOpacity key = {i} onPress = {() => this.props.navigation.navigate('ShowPassScreen', {updateOut: this._uOutList, pass_code: item.pass_code, pass_name: pCode.name, pass_id: item.pass_id, teacId: item.teacher_id, uOut_id: this.state.u_id})}>  
-                                    <View style = {styles.myPasses}  > 
-                                        <Text style = {styles.mypassTxt}>  {pCode.name} </Text> 
+                              <FlatList 
+                                  data= {this.state.myRegPasses}
+                                  extraData={this.state.myOutPass} // Magic Code for Update
+                                  renderItem = {({item}) => 
+                                  this.state.dataPasses.map((pCode, i) => ( 
+                                    (pCode.code === item.pass_code) && (item.user_id === this.state.u_id)  ? 
+                                      
+                                        <TouchableOpacity key = {i} onPress = {() => this.props.navigation.navigate('ShowPassScreen', {updateOut: this._uOutList, pass_code: item.pass_code, pass_name: pCode.name, pass_id: item.pass_id, teacId: item.teacher_id, uOut_id: this.state.u_id})}>  
+                                        <View style = {styles.myPasses}  > 
+                                            <Text style = {styles.mypassTxt} key = {i} >  {pCode.name} </Text> 
                                          
-                                        <View> 
+                                            <View style = {{overflow: "hidden",borderRadius: 50}}> 
                                             {this.state.myOutPass.map((ouser, i) => (
                                               (ouser.pass_id === item.pass_id) && (ouser.userout_id === item.user_id) ?
-                                              <Text key = {i}>Out</Text>
+                                              <Text key = {i} style = {styles.outSideSign}> Out</Text>
                                               :
                                               null
                                               ))
                                             }
                                           </View>
                                          
-                                          
-                                          {/* <UserOutPasses myOutPass = {this.state.myOutPass} u_id= {this.state.u_id} itempassid = {item.pass_id} itemuserid = {item.user_id} />
- */}
-                                        </View>
-                                  </TouchableOpacity> 
-                                    :
-                                    null
-                              ))
-                              }
-                            />    
+                                         
+                                         </View>
+                                         </TouchableOpacity>
+                                         :
+                                         null    
+                                  ))
+                                  }
+                                  keyExtractor={(item, index) => index.toString()}
+                              />
+                          
                         </View>
 
             </View>
@@ -357,5 +357,16 @@ allPasses: {
 admitClasses: {
   flex: 1, 
 },
- 
+
+outSideSign: { 
+  backgroundColor: '#DC4C40',
+  paddingTop: 5,
+  paddingBottom: 5, 
+  paddingRight: 6, 
+  paddingLeft: 3, 
+  color:'white', 
+  fontWeight: '700',
+  textAlign: 'left'
+}
+
 });

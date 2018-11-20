@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
 
   inputBox: {
     width: width,
-    backgroundColor:'rgba(255, 255,255,0.2)',
+    
     borderRadius: 25,
     padding:20,
     paddingLeft: 20, 
@@ -112,6 +112,7 @@ const styles = StyleSheet.create({
     color:'#ffffff',
     marginVertical: 10
   },
+  
   button: {
     width:300,
     backgroundColor:'#1c313a',

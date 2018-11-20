@@ -1,6 +1,9 @@
 import React from 'react';
-import {StyleSheet, TextInput,  Form, Text, View, StatusBar, FlatList, TouchableOpacity,   Button, Dimensions} from 'react-native';
+import {StyleSheet, Platform, TextInput,  Form, Text, View, StatusBar, FlatList, TouchableOpacity,   Button, Dimensions} from 'react-native';
  
+var width = Dimensions.get('window').width; //full width
+
+
 export default class RegisterUser extends React.Component { 
   
   constructor(props){
@@ -60,7 +63,7 @@ export default class RegisterUser extends React.Component {
   
   render(){
     return (
-      <View>   
+      <View style = {styles.container} >   
  
           <TextInput style={styles.inputBox}  
               placeholder="Name"
@@ -113,24 +116,41 @@ export default class RegisterUser extends React.Component {
 
 const styles = StyleSheet.create({
  
+  container : {
+    flexGrow: 1,
+    justifyContent:'center',
+    alignItems: 'center'
+  },
+
+
   inputBox: {
-    width: 280,
-    backgroundColor:'rgba(255, 255,255,0.2)',
+    width: width - 30,
+    backgroundColor:'#A167AC',
     borderRadius: 25,
     padding:10,
     paddingLeft: 20, 
     fontSize:16,
     color:'white',
-    marginVertical: 10
+    marginVertical: 10,
+    ...Platform.select({
+      ios: {
+        padding:15,
+      },
+      android: {
+        padding:10,
+      },
+    }),
+
   },
 
   
   button: {
-    width: 280,
+    width:300,
     backgroundColor:'#1c313a',
      borderRadius: 25,
       marginVertical: 10,
       paddingVertical: 13
+      
   },
   buttonText: {
     fontSize:16,
