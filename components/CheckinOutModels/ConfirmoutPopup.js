@@ -1,6 +1,5 @@
 import React from 'react';
 import {StyleSheet, Text, View, Button } from 'react-native';
- 
 import Dialog from "react-native-dialog";
  
  
@@ -17,6 +16,7 @@ export  class ConfirmoutPopup extends React.Component {
            
         }
       this.checkoutUser = this.checkoutUser.bind(this); 
+      this._gotoOverlay = this._gotoOverlay.bind(this);
     
     }
 
@@ -53,13 +53,17 @@ export  class ConfirmoutPopup extends React.Component {
           pass_code: this.state.passCode,
           idcard_num: 92780, 
       }), 
-    }).then((response) => {
-      alert('Success');
+    })
+    
+     .then((response) => {
+     /*  alert('Success');
       this.setState({
         checkvis: false, 
-      }); 
-     this._gotoOverlay();   
-    });
+      });  */
+      this._gotoOverlay();   
+    });  
+
+
   }
 
   _postStatsUser_perm(){ 
@@ -79,10 +83,9 @@ export  class ConfirmoutPopup extends React.Component {
     }).done();
   }
 
-  _gotoOverlay = () => {  
+  _gotoOverlay() {  
     this.props.pressgotoOverlay.state.params.updateOut();
-    this.props.pressgotoOverlay.navigate('OverlayScreen');  
-     
+    this.props.pressgotoOverlay.navigate('OverlayScreen');   
    }
   
 
@@ -94,9 +97,7 @@ export  class ConfirmoutPopup extends React.Component {
             <Dialog.Button label = "Cancel" onPress = {this.props.confirmCheckout} /> 
             <Dialog.Button label = "Checkout" onPress = {this.checkoutUser}/>   
         </Dialog.Container>
-
-                    
-
+ 
       </View>
     );
   }

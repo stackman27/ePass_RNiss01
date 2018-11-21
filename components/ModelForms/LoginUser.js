@@ -53,7 +53,8 @@ export default class LoginUser extends Component {
  
       })
       .catch((error) => {
-        console.error(error);
+        alert('Incorrect Email or Password.')
+        //console.error(error);
       }); 
   }
 

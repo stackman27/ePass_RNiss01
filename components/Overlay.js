@@ -95,7 +95,7 @@ export default class Overlay extends React.Component {
     let apiAllPasses = 'http://fstedie.fatcow.com/public_html/index.php/api/allpasses';
     let apiMyRegPasses = 'http://fstedie.fatcow.com/public_html/index.php/api/getregisterstudent';
  
-  return fetch(apiAllPasses)
+   fetch(apiAllPasses)
     .then((response) => response.json())
     .then((responseJson) => {
         this.setState({
@@ -135,8 +135,7 @@ export default class Overlay extends React.Component {
 
             console.log("Teachers Ids:", teacherids[index]);
 
-            this.createstdPass(this.state.u_id, subTxtCode, teacherids[index]);
-            alert('Success'); 
+            this.createstdPass(this.state.u_id, subTxtCode, teacherids[index]); 
             this.get_UserRegPasses();
             console.log("MYREGPASSES_AFTER REG: ", this.state.myRegPasses); 
 
@@ -165,20 +164,27 @@ export default class Overlay extends React.Component {
           teacher_id: teacher_id,
           pass_code: passCode
       }),
-  });
+  })
+  .then(function (data) {  
+    alert('Success'); 
+  })  
+  .catch(function (error) {  
+    console.log('Request failure: ', error);  
+  }); 
+
+
   }
 
   _uOutList = () => {
     let apiPassOut = `http://fstedie.fatcow.com/public_html/index.php/api/allOutUsers/${this.state.u_id}`;
          
-    return fetch(apiPassOut)
+     fetch(apiPassOut)
         .then((response) => response.json())
         .then((responseJson) => {
             this.setState ({
                 myOutPass: responseJson,  
-                refreshing: true, 
-            }); 
-
+                refreshing: false, 
+            });  
             console.log("SUCCESSSSSSSSS", this.state.myOutPass);
         }).done();
     
@@ -214,6 +220,17 @@ txtValChange(value){
   })
 }
 
+handleRefresh = () => {
+
+  this.setState({
+    refreshing: true,
+  }, () => {
+    this.get_UserRegPasses();
+    this._uOutList();
+  })
+  
+}
+
  
  render = () =>{
 
@@ -245,6 +262,8 @@ txtValChange(value){
                               <FlatList 
                                   data= {this.state.myRegPasses}
                                   extraData={this.state.myOutPass} // Magic Code for Update
+                                  refreshing = {this.state.refreshing}
+                                  onRefresh = {this.handleRefresh}
                                   renderItem = {({item}) => 
                                   this.state.dataPasses.map((pCode, i) => ( 
                                     (pCode.code === item.pass_code) && (item.user_id === this.state.u_id)  ? 

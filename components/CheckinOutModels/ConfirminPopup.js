@@ -35,8 +35,8 @@ export  class ConfirminPopup extends React.Component {
 
 
   checkinUser(){ 
-   this._updStatsUser_perm(); 
-  // this._delOutsideUser_temp(); 
+   //this._updStatsUser_perm(); 
+   this._delOutsideUser_temp(); 
   }
 
  
@@ -52,10 +52,7 @@ export  class ConfirminPopup extends React.Component {
         method: 'DELETE',
   
     }).then((response) => {
-        alert('Success')
-        this.setState({
-          checkvis: false, 
-        });
+        
         this.getUserOut();
         this._gotoOverlay();
     }) 

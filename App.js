@@ -58,8 +58,7 @@ export default class App extends React.Component {
   render(){
     return (
       <View style={styles.container}>    
-       <MyStatusBar backgroundColor="#8E3A9D" barStyle="light-content" /> 
-
+       <MyStatusBar backgroundColor="#9C27B0" barStyle="light-content" /> 
            <AppNavigator />
       </View>
     );
