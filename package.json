@@ -25,6 +25,7 @@
     "react-native": "~0.55.2",
     "react-native-dialog": "^5.4.0",
     "react-native-elements": "^0.19.1",
+    "react-native-loading-spinner-overlay": "^1.0.1",
     "react-native-shadow": "^1.2.2",
     "react-navigation": "^2.12.1",
     "watchman": "^1.0.0"

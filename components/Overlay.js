@@ -251,9 +251,6 @@ handleRefresh = () => {
  
     return (
       <View style = {{flex: 1, backgroundColor: '#eee'}}>  
-
-      
-
               <PopupAddPass setVal = {this.state.txtVal} setChangeText = {this.txtValChange} setSubmitPass = {this.submitCodeHandle} visibility = {this.state.dialogVisible} onCancelClick = {this.handleCancel} onSubmitClick = {this.handleSubmit}/>
             
                     <View style = {styles.PassesContainer}>  
@@ -280,9 +277,8 @@ handleRefresh = () => {
                                               null
                                               ))
                                             }
-                                          </View>
-                                         
-                                         
+                                          </View> 
+                                          
                                          </View>
                                          </TouchableOpacity>
                                          :

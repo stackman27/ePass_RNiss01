@@ -14,6 +14,7 @@ export  class ConfirminPopup extends React.Component {
           passId: null,
           uOut_id: null, 
           checkvis: false,  
+          uoutDate: null,
           myOutPass: [],  
         }
       this.checkinUser = this.checkinUser.bind(this); 
@@ -24,13 +25,14 @@ export  class ConfirminPopup extends React.Component {
       this.setState({
           passCode: this.props.confirmInPassCode,
           passId: this.props.confirmInPassId, 
-          uOut_id: this.props.uOut_id,  
-           
+          uOut_id: this.props.uOut_id,   
+      }, () => {
+        this.userOutUpdateData();
       });
    }
 
    componentWillReceiveProps(props) {
-    this.setState({checkvis: props.visibility,});
+    this.setState({checkvis: props.visibility});
 }
 
 
@@ -46,21 +48,18 @@ export  class ConfirminPopup extends React.Component {
     console.log("STATE PARAM PASSID", this.props.pressgotoOverlay.state.params.pass_id);
 
     // delete user from Outside User
-   let apiStdCheckin = `http://fstedie.fatcow.com/public_html/index.php/api/outsideuser_custom/${this.props.pressgotoOverlay.state.params.uOut_id}/${this.props.pressgotoOverlay.state.params.pass_id}`;
+   let apiStdCheckin = `http://fstedie.fatcow.com/public_html/index.php/api/outsideuser_custom/${this.props.pressgotoOverlay.state.params.uOut_id}/${this.props.pressgotoOverlay.state.params.pass_id}/${this.state.uoutDate}`;
 
     return fetch(apiStdCheckin, { 
         method: 'DELETE',
-  
     }).then((response) => {
-        
         this.getUserOut();
         this._gotoOverlay();
     }) 
 
 }
 
-getUserOut = () => {
- 
+getUserOut = () => { 
     let apiPassOut = `http://fstedie.fatcow.com/public_html/index.php/api/allOutUsers/${this.props.pressgotoOverlay.state.params.uOut_id}`;
          
   return fetch(apiPassOut)
@@ -71,10 +70,22 @@ getUserOut = () => {
           }); 
           console.log("CONFIRM IN POPUP OUT STUDENTS", this.state.myOutPass);
            
-        }).done();
- 
+        }).done(); 
 }
 
+  userOutUpdateData = () => {
+        let apiUpdateDatainfo = `http://fstedie.fatcow.com/public_html/index.php/api/getUpdateData/${this.props.pressgotoOverlay.state.params.uOut_id }/${this.props.pressgotoOverlay.state.params.pass_id}`;
+
+        return fetch(apiUpdateDatainfo)
+      .then((response) => response.json())
+      .then((responseJson) => {
+          this.setState ({
+            uoutDate: responseJson.created_at
+          });   
+        }).done(); 
+ 
+  }
+ 
   _updStatsUser_perm(){ 
     // Update the Checkin Time
       alert('Checkout User')

@@ -9,6 +9,8 @@ import {
   Button,
   Platform
 } from 'react-native';
+
+import Spinner from 'react-native-loading-spinner-overlay';
  
 var width = Dimensions.get('window').width; //full width
 
@@ -21,6 +23,7 @@ export default class LoginUser extends Component {
         email: '',
         password: '', 
         apiToken: '',
+        spinner: false,
     }
 
     this.handleSubmit = this.handleSubmit.bind(this); 
@@ -47,9 +50,13 @@ export default class LoginUser extends Component {
         console.log(responseJson.success.token);  
 
         this.setState({
+          spinner: true, 
           apiToken: responseJson.success.token
+        }, () => {
+          this.gotoOverlay();
         });
-        this.gotoOverlay();
+        
+       
  
       })
       .catch((error) => {
@@ -58,8 +65,12 @@ export default class LoginUser extends Component {
       }); 
   }
 
-  gotoOverlay = () => {
+  gotoOverlay = () => { 
     this.props.pressChange.navigate('OverlayScreen', {u_apiToken: this.state.apiToken});
+    this.setState({
+      spinner: false, 
+    })
+    
 }
  
 
@@ -67,6 +78,13 @@ export default class LoginUser extends Component {
  
 		return(
 			<View style={styles.container}>
+
+              <Spinner
+                  visible={this.state.spinner}
+                  textContent={'Loading...'}
+                  
+                />
+
           <TextInput style={styles.inputBox} 
               underlineColorAndroid='rgba(0,0,0,0)' 
               placeholder="Email"
