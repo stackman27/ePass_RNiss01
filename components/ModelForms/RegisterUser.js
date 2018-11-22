@@ -12,6 +12,7 @@ export default class RegisterUser extends React.Component {
     this.state = {
       name: '',
       email: '',
+      idnumber: '', 
       password: '',
       c_password: '', 
     }
@@ -36,6 +37,7 @@ export default class RegisterUser extends React.Component {
       body: JSON.stringify({
         name: this.state.name, 
         email: this.state.email, 
+        idnumber: this.state.idnumber,
         password: this.state.password, 
         c_password: this.state.c_password
       }), 
@@ -53,6 +55,7 @@ export default class RegisterUser extends React.Component {
           name: '',
           email: '',
           password: '',
+          idnumber: '',
           c_password: '',
         })
       }
@@ -83,6 +86,16 @@ export default class RegisterUser extends React.Component {
               keyboardType="email-address"
               onChangeText = {(email) => this.setState({email})}
               value = {this.state.email}
+              />
+
+           <TextInput style={styles.inputBox}  
+              placeholder="Id Number"
+              name = "idnumber"
+              placeholderTextColor = "#ffffff"
+              selectionColor="#fff" 
+              keyboardType= {"numeric"}
+              onChangeText = {(idnumber) => this.setState({idnumber})}
+              value = {this.state.idnumber}
               />
 
           <TextInput style={styles.inputBox}  

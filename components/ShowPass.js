@@ -101,7 +101,7 @@ export  class ShowPass extends React.Component {
     return (
       <View style = {styles.contWrap}> 
     
-       <ConfirmoutPopup  pressgotoOverlay = {this.props.navigation} passOwnerid = {this.props.navigation.state.params.teacId} confirmOutPassId = {this.props.navigation.state.params.pass_id} uOut_id = {this.props.navigation.state.params.uOut_id} confirmOutPassCode = {this.props.navigation.state.params.pass_code} visibility = {this.state.dialogConfirmOutVisible} confirmCancel = {this._showConfirmOutDialogCancel} confirmCheckout = {this._showConfirmOutDialogCheckout}/>
+       <ConfirmoutPopup   idnumber = {this.props.navigation.state.params.uIdNum} pressgotoOverlay = {this.props.navigation} passOwnerid = {this.props.navigation.state.params.teacId} confirmOutPassId = {this.props.navigation.state.params.pass_id} uOut_id = {this.props.navigation.state.params.uOut_id} confirmOutPassCode = {this.props.navigation.state.params.pass_code} visibility = {this.state.dialogConfirmOutVisible} confirmCancel = {this._showConfirmOutDialogCancel} confirmCheckout = {this._showConfirmOutDialogCheckout}/>
         <ConfirminPopup _checkinfunc = {this._delOutsideUser_temp} pressgotoOverlay = {this.props.navigation} passOwnerid = {this.props.navigation.state.params.teacId} confirmOutPassId = {this.props.navigation.state.params.pass_id} uOut_id = {this.props.navigation.state.params.uOut_id} confirmInPassCode = {this.props.navigation.state.params.pass_code} visibility = {this.state.dialogConfirmInVisible} confirmCancel = {this._showConfirmInDialogCancel} confirmCheckout = {this._showConfirmInDialogCheckout}/>
 
         <View style = {styles.wrapTitle}>   
@@ -112,7 +112,7 @@ export  class ShowPass extends React.Component {
   <View style = {styles.wrapbtns}>
   
         <TouchableOpacity  onPress = {this._showConfirmOutDialog} style = {[styles.btnOutIn, styles.btnCheckout]}>
-                <View  >
+                <View  > 
                         <Text style = {styles.checkoText}> Check Out </Text>
                 </View>
             </TouchableOpacity>   

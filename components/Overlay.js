@@ -19,6 +19,7 @@ export default class Overlay extends React.Component {
         u_id: '',
         u_name: '',
         u_email: '', 
+        idnumber: '', 
         refreshing: false,  
     }; 
 
@@ -72,7 +73,8 @@ export default class Overlay extends React.Component {
         
         this.setState({
           u_name: responseJson.success.name,
-          u_id: responseJson.success.id
+          u_id: responseJson.success.id,
+          idnumber: responseJson.success.idnumber,
         });
 
         this.props.navigation.setParams({
@@ -265,10 +267,9 @@ handleRefresh = () => {
                                   this.state.dataPasses.map((pCode, i) => ( 
                                     (pCode.code === item.pass_code) && (item.user_id === this.state.u_id)  ? 
                                       
-                                        <TouchableOpacity key = {i} onPress = {() => this.props.navigation.navigate('ShowPassScreen', {updateOut: this._uOutList, pass_code: item.pass_code, pass_name: pCode.name, pass_id: item.pass_id, teacId: item.teacher_id, uOut_id: this.state.u_id})}>  
+                                        <TouchableOpacity key = {i} onPress = {() => this.props.navigation.navigate('ShowPassScreen', {uIdNum: this.state.idnumber, updateOut: this._uOutList, pass_code: item.pass_code, pass_name: pCode.name, pass_id: item.pass_id, teacId: item.teacher_id, uOut_id: this.state.u_id})}>  
                                         <View style = {styles.myPasses}  > 
-                                            <Text style = {styles.mypassTxt} key = {i} >  {pCode.name} </Text> 
-                                         
+                                            <Text style = {styles.mypassTxt} key = {i} >  {pCode.name} </Text>  
                                             <View style = {{overflow: "hidden",borderRadius: 50}}> 
                                             {this.state.myOutPass.map((ouser, i) => (
                                               (ouser.pass_id === item.pass_id) && (ouser.userout_id === item.user_id) ?

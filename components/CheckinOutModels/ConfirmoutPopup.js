@@ -12,6 +12,7 @@ export  class ConfirmoutPopup extends React.Component {
           passCode: null, 
           passId: null,
           uOut_id: null, 
+          idnumber: null, 
           checkvis: false,   
            
         }
@@ -25,6 +26,7 @@ export  class ConfirmoutPopup extends React.Component {
           passCode: this.props.confirmOutPassCode,
           passId: this.props.confirmOutPassId, 
           uOut_id: this.props.uOut_id,  
+          idnumber: this.props.idnumber,
       });
    }
 
@@ -51,7 +53,7 @@ export  class ConfirmoutPopup extends React.Component {
           userout_id: this.state.uOut_id,
           pass_id: this.state.passId, 
           pass_code: this.state.passCode,
-          idcard_num: 92780, 
+          idcard_num: this.state.idnumber, 
       }), 
     })
     
@@ -78,7 +80,7 @@ export  class ConfirmoutPopup extends React.Component {
           pass_owner_id: this.props.passOwnerid, 
           userout_id: this.state.uOut_id,
           pass_id: this.state.passId,  
-          idcard_num: 92780, 
+          idcard_num: this.state.idnumber, 
       }), 
     }).done();
   }
