@@ -168,7 +168,13 @@ export default class Overlay extends React.Component {
       }),
   })
   .then(function (data) {  
-    alert('Success'); 
+
+    this.setState({
+      txtVal: '',
+    }, () => {
+      alert('Success'); 
+    })
+     
   })  
   .catch(function (error) {  
     console.log('Request failure: ', error);  

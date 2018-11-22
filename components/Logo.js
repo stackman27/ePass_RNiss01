@@ -11,7 +11,7 @@ export default class Logo extends Component  {
 	render(){
 		return(
 			<View style={styles.container}> 
-          		<Text style={styles.logoText}>eHallPass</Text>	
+          		<Text style={styles.logoText}>WhizPass</Text>	
   			</View>
 			)
 	}
